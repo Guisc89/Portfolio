@@ -91,7 +91,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-size: 15px; /* Scaled down base font size for smaller layout */
+  font-size: 17px; /* Base font size (+2px) */
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -210,7 +210,7 @@ button {
   transform: scaleX(1);
 }
 
-.glass-card:hover {
+.glass-card:hover:not(.tech-card) {
   transform: translateY(-4px);
   border-color: var(--border-hover);
   box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.08),
@@ -463,20 +463,20 @@ button {
 .pulse-dot {
   width: 6px;
   height: 6px;
-  background-color: #a3a3a3; /* Gray dot instead of glowing green */
+  background-color: #ADFF2F; /* Lime green — open to opportunities */
   border-radius: 50%;
-  box-shadow: 0 0 0 rgba(255, 255, 255, 0.4);
-  animation: pulseMono 2s infinite;
+  box-shadow: 0 0 0 rgba(173, 255, 47, 0.4);
+  animation: pulseLime 2s infinite;
 }
 
 [data-theme="light"] .pulse-dot {
-  background-color: #525252;
+  background-color: #65a30d;
 }
 
-@keyframes pulseMono {
-  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0.3); }
-  70% { transform: scale(1); box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0); }
-  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(var(--primary-rgb), 0); }
+@keyframes pulseLime {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(173, 255, 47, 0.4); }
+  70% { transform: scale(1); box-shadow: 0 0 0 4px rgba(173, 255, 47, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(173, 255, 47, 0); }
 }
 
 /* 5. Header Navigation */
@@ -499,10 +499,11 @@ button {
 }
 
 .header-container {
+  max-width: 1440px;
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: clamp(1.5rem, 2.4vw, 2.75rem);
 }
 
 .logo {
@@ -512,6 +513,7 @@ button {
   display: flex;
   align-items: center;
   letter-spacing: -0.04em;
+  flex-shrink: 0;
 }
 
 .logo-code {
@@ -527,7 +529,8 @@ button {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 1.4rem;
+  gap: clamp(0.7rem, 1vw, 1.1rem);
+  margin-left: auto;
 }
 
 .nav-link {
@@ -562,6 +565,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.8rem;
+  flex-shrink: 0;
 }
 
 .theme-btn {
@@ -695,8 +699,8 @@ button {
 
 .tech-graphic {
   position: relative;
-  width: 260px;
-  height: 260px;
+  width: 300px;
+  height: 300px;
   perspective: 900px;
 }
 
@@ -710,14 +714,14 @@ button {
 }
 
 .circle-outer {
-  width: 320px;
-  height: 320px;
+  width: 370px;
+  height: 370px;
   animation: spinClockwise 60s infinite linear;
 }
 
 .circle-middle {
-  width: 250px;
-  height: 250px;
+  width: 290px;
+  height: 290px;
   border-style: solid;
   border-color: var(--border-color);
   opacity: 0.4;
@@ -725,8 +729,8 @@ button {
 }
 
 .circle-inner {
-  width: 170px;
-  height: 170px;
+  width: 200px;
+  height: 200px;
   border-style: dotted;
   opacity: 0.2;
 }
@@ -738,21 +742,148 @@ button {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 280px;
-  padding: 1rem;
+  width: 330px;
+  padding: 0;
   border-radius: 6px;
-  background-color: #050505;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
   z-index: 10;
   animation: floatCard 8s infinite ease-in-out;
   transform-style: preserve-3d;
   will-change: transform;
+  cursor: pointer;
+  outline: none;
+  overflow: visible;
+}
+
+.tech-card.glass-card {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.tech-card-flipper {
+  --card-glow-angle: 0deg;
+  position: relative;
+  width: 100%;
+  min-height: 310px;
+  transform-style: preserve-3d;
+  transition: transform 0.75s cubic-bezier(0.34, 1.2, 0.64, 1);
+}
+
+.tech-card-flipper::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  padding: 2px;
+  border-radius: 8px;
+  background: conic-gradient(
+    from var(--card-glow-angle),
+    transparent 0deg 255deg,
+    rgba(var(--primary-rgb), 0.08) 280deg,
+    rgba(var(--primary-rgb), 0.92) 312deg,
+    rgba(var(--primary-rgb), 0.92) 340deg,
+    transparent 360deg
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  opacity: 0.82;
+  filter: drop-shadow(0 0 4px rgba(var(--primary-rgb), 0.72))
+          drop-shadow(0 0 10px rgba(var(--primary-rgb), 0.32));
+  transform: translateZ(1px);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.32s ease,
+              filter 0.32s ease;
+  animation: cardGlowOrbit 4.8s linear infinite;
+}
+
+@property --card-glow-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes cardGlowOrbit {
+  to {
+    --card-glow-angle: 360deg;
+  }
+}
+
+.tech-card:hover .tech-card-flipper,
+.tech-card:focus-visible .tech-card-flipper {
+  transform: rotateY(180deg);
+}
+
+.tech-card:hover .tech-card-flipper::before,
+.tech-card:focus-visible .tech-card-flipper::before {
+  filter: drop-shadow(0 0 0 rgba(var(--primary-rgb), 0));
+  opacity: 0;
+}
+
+.tech-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+  transition: border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tech-card:hover .tech-card-face,
+.tech-card:focus-visible .tech-card-face {
+  border-color: var(--border-color);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+}
+
+.tech-card-front {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 310px;
+  padding: 1.15rem 1.25rem;
+  background-color: #050505;
+}
+
+.tech-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  background-color: #050505;
+}
+
+.tech-card-back img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+[data-theme="light"] .tech-card-face {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .tech-card-front,
+[data-theme="light"] .tech-card-back {
+  background-color: #ffffff;
 }
 
 [data-theme="light"] .tech-card {
-  background-color: #ffffff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background-color: transparent;
+  box-shadow: none;
 }
 
 @keyframes floatCard {
@@ -780,9 +911,9 @@ button {
 
 .card-content-code {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .code-line {
@@ -799,6 +930,31 @@ button {
 .code-string { color: var(--text-secondary); font-style: italic; }
 
 /* 7. About Section */
+.about-section {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.about-section::before {
+  content: '';
+  position: absolute;
+  right: clamp(-5rem, -4vw, -2rem);
+  bottom: -5rem;
+  width: min(48vw, 650px);
+  aspect-ratio: 1;
+  background: url('assets/xadrez.png') center / contain no-repeat;
+  opacity: 0.2;
+  filter: grayscale(1) blur(0.4px);
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.about-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
 .about-grid {
   display: grid;
   grid-template-columns: 0.8fr 1.2fr;
@@ -868,6 +1024,15 @@ button {
   border-radius: 0 4px 4px 0;
   font-size: 0.92rem !important;
   line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .about-section::before {
+    right: -24%;
+    bottom: -2rem;
+    width: min(90vw, 560px);
+    opacity: 0.13;
+  }
 }
 
 /* 8. Services / Areas of Action Section */
@@ -1212,6 +1377,17 @@ button {
   margin-bottom: 0.2rem;
 }
 
+.job-card-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+}
+
+.job-card-heading {
+  min-width: 0;
+}
+
 .job-company {
   font-size: 0.88rem;
   font-weight: 500;
@@ -1264,6 +1440,63 @@ button {
   height: 0.85rem;
   margin-top: 0.2rem;
   flex-shrink: 0;
+}
+
+.job-card-header .job-company {
+  margin-bottom: 0;
+}
+
+.job-toggle {
+  width: 2.35rem;
+  height: 2.35rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  transition: color var(--transition-speed) var(--transition-bezier),
+              border-color var(--transition-speed) var(--transition-bezier),
+              background-color var(--transition-speed) var(--transition-bezier);
+}
+
+.job-toggle:hover {
+  color: var(--primary);
+  border-color: rgba(var(--primary-rgb), 0.35);
+}
+
+.job-toggle i {
+  width: 1rem;
+  height: 1rem;
+  transition: transform 0.38s var(--transition-bezier);
+}
+
+.job-card.is-open .job-toggle i {
+  transform: rotate(180deg);
+}
+
+.job-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.42s var(--transition-bezier),
+              opacity 0.25s ease;
+}
+
+.job-card.is-open .job-details {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.job-details-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.job-details .job-desc {
+  margin-top: 1rem;
 }
 
 .job-bullets li strong {
@@ -1946,7 +2179,7 @@ button:focus-visible {
 
 /* The consolidated HTML has nine navigation links. Switch to the drawer
    before the desktop navigation becomes cramped. */
-@media (max-width: 1120px) {
+@media (max-width: 1200px) {
   .logo {
     order: 1;
   }

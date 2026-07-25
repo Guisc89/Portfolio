@@ -107,6 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollspy();
   initSkillsFilter();
+  initExperienceAccordion();
   initTypewriter();
   initUniverseEffect();
   initScrollReveal();
@@ -451,6 +452,74 @@ function initSkillsFilter() {
           badge.classList.add('hidden');
         }
       });
+    });
+  });
+}
+
+/**
+ * 11. EXPERIENCE ACCORDION
+ * Keeps the current role open and condenses previous positions.
+ */
+function initExperienceAccordion() {
+  const cards = Array.from(document.querySelectorAll('.experience-section .job-card'));
+
+  if (!cards.length) return;
+
+  function setCardState(card, isOpen) {
+    const toggle = card.querySelector('.job-toggle');
+    const details = card.querySelector('.job-details');
+    const title = card.querySelector('.job-title')?.textContent.trim() || 'experiência';
+
+    card.classList.toggle('is-open', isOpen);
+    toggle?.setAttribute('aria-expanded', String(isOpen));
+    toggle?.setAttribute('aria-label', `${isOpen ? 'Recolher' : 'Abrir'} detalhes de ${title}`);
+    toggle?.setAttribute('title', `${isOpen ? 'Recolher' : 'Abrir'} detalhes`);
+    details?.setAttribute('aria-hidden', String(!isOpen));
+  }
+
+  cards.forEach((card, index) => {
+    const title = card.querySelector('.job-title');
+    const company = card.querySelector('.job-company');
+
+    if (!title || !company) return;
+
+    const header = document.createElement('div');
+    const heading = document.createElement('div');
+    const toggle = document.createElement('button');
+    const details = document.createElement('div');
+    const detailsInner = document.createElement('div');
+    const detailsId = `job-details-${index + 1}`;
+
+    header.className = 'job-card-header';
+    heading.className = 'job-card-heading';
+    toggle.className = 'job-toggle';
+    toggle.type = 'button';
+    toggle.setAttribute('aria-controls', detailsId);
+    toggle.innerHTML = '<i data-lucide="chevron-down"></i>';
+    details.className = 'job-details';
+    details.id = detailsId;
+    detailsInner.className = 'job-details-inner';
+
+    card.insertBefore(header, title);
+    heading.append(title, company);
+    header.append(heading, toggle);
+
+    while (header.nextSibling) {
+      detailsInner.appendChild(header.nextSibling);
+    }
+
+    details.appendChild(detailsInner);
+    card.appendChild(details);
+    setCardState(card, index === 0);
+
+    toggle.addEventListener('click', () => {
+      const shouldOpen = !card.classList.contains('is-open');
+
+      if (shouldOpen) {
+        cards.forEach(otherCard => setCardState(otherCard, false));
+      }
+
+      setCardState(card, shouldOpen);
     });
   });
 }
