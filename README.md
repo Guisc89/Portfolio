@@ -1,7 +1,3 @@
-# Portfólio Profissional — Guilherme Cardoso
-
-# Portfólio Profissional — Guilherme Cardoso
-
 # Guilherme Cardoso | Portfólio Profissional
 
 ### Negócios, processos e tecnologia conectados para criar soluções digitais.
