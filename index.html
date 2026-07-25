@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- SEO Meta Tags -->
+  <title>Guilherme Cardoso | Analista de Sistemas e Requisitos</title>
+  <meta name="description" content="Portfólio de Guilherme Cardoso, formado em Análise e Desenvolvimento de Sistemas, com foco em Análise de Sistemas, Negócios e Requisitos, Java, Python, JavaScript, processos e soluções digitais.">
+  <meta name="keywords" content="Guilherme Cardoso, Analista de Sistemas, Analista de Requisitos, Analista de Negócios, Java, Python, JavaScript, ADS, Desenvolvimento de Sistemas, Processos, Projetos de TI">
+  <meta name="author" content="Guilherme Cardoso">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://seusite.com.br/">
+  <meta property="og:title" content="Guilherme Cardoso | Analista de Sistemas e Requisitos">
+  <meta property="og:description" content="Portfólio de Guilherme Cardoso, formado em Análise e Desenvolvimento de Sistemas, com foco em Análise de Sistemas, Negócios e Requisitos, Java, Python, JavaScript, processos e soluções digitais.">
+  <meta property="og:image" content="https://seusite.com.br/assets/preview.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Guilherme Cardoso | Analista de Sistemas e Requisitos">
+  <meta property="twitter:description" content="Portfólio de Guilherme Cardoso, formado em Análise e Desenvolvimento de Sistemas, com foco em Análise de Sistemas, Negócios e Requisitos, Java, Python, JavaScript, processos e soluções digitais.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- Background Gradients and Decorative Lights -->
+  <div class="glow-bg">
+    <canvas id="particlesCanvas"></canvas>
+    <div class="stars-bg"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+  </div>
+
+  <!-- Header Navigation -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="#home" class="logo">
+        <span class="logo-code">&lt;</span>
+        <span class="logo-name">Guilherme.C</span>
+        <span class="logo-code">/&gt;</span>
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+        <i data-lucide="menu"></i>
+      </button>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Início</a>
+        <a href="#about" class="nav-link">Sobre</a>
+        <a href="#services" class="nav-link">Atuação</a>
+        <a href="#skills" class="nav-link">Habilidades</a>
+        <a href="#projects" class="nav-link">Projetos</a>
+        <a href="#experience" class="nav-link">Experiência</a>
+        <a href="#education" class="nav-link">Formação</a>
+        <a href="#certifications" class="nav-link">Certificações</a>
+        <a href="#contact" class="nav-link">Contato</a>
+      </nav>
+
+      <!-- Theme Switcher & Actions -->
+      <div class="header-actions">
+        <button id="themeToggle" class="theme-btn" aria-label="Alternar tema">
+          <i data-lucide="moon" class="icon-dark"></i>
+          <i data-lucide="sun" class="icon-light"></i>
+        </button>
+        <a href="#contact" class="btn btn-sm btn-primary hide-mobile">Falar Comigo</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- 1. Hero / Cabeçalho Principal -->
+    <section id="home" class="section hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <div class="badge-status">
+            <span class="pulse-dot"></span>
+            Formado em ADS • Aberto a Oportunidades
+          </div>
+          <h1 class="hero-title">
+            Olá, eu sou <span class="text-gradient" id="typewriter">Guilherme Cardoso</span>
+          </h1>
+          <h2 class="hero-subtitle">
+            Analista de Sistemas | Análise de Negócios e Requisitos | Java, Python, JavaScript
+          </h2>
+          <p class="hero-description">
+            Formado em Análise e Desenvolvimento de Sistemas, uno visão de negócio, processos e tecnologia para transformar problemas reais em soluções digitais.
+          </p>
+          
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary">
+              <i data-lucide="folder-git-2"></i> Ver projetos
+            </a>
+            <a href="#" id="heroResumeBtn" class="btn btn-secondary" target="_blank" download>
+              <i data-lucide="file-down"></i> Baixar currículo
+            </a>
+          </div>
+
+          <!-- Social Buttons & Contact Links -->
+          <div class="hero-socials">
+            <a href="#" id="heroWhatsappBtn" class="social-icon whatsapp-color" title="Chamar no WhatsApp" target="_blank">
+              <i data-lucide="phone"></i>
+              <span class="social-label">WhatsApp</span>
+            </a>
+            <a href="#" id="heroLinkedinBtn" class="social-icon linkedin-color" title="LinkedIn" target="_blank">
+              <i data-lucide="linkedin"></i>
+              <span class="social-label">LinkedIn</span>
+            </a>
+            <a href="#" id="heroGithubBtn" class="social-icon github-color" title="GitHub" target="_blank">
+              <i data-lucide="github"></i>
+              <span class="social-label">GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="tech-graphic">
+            <div class="circle circle-outer"></div>
+            <div class="circle circle-middle"></div>
+            <div class="circle circle-inner"></div>
+            <div class="tech-card glass-card">
+              <div class="card-header-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="card-content-code">
+                <p class="code-line"><span class="code-keyword">const</span> professional = {</p>
+                <p class="code-line indent"><span class="code-property">name</span>: <span class="code-string">"Guilherme Cardoso"</span>,</p>
+                <p class="code-line indent"><span class="code-property">education</span>: <span class="code-string">"ADS (Análise e Dev. Sistemas)"</span>,</p>
+                <p class="code-line indent"><span class="code-property">coreSkills</span>: [<span class="code-string">"Requisitos"</span>, <span class="code-string">"Processos"</span>, <span class="code-string">"Negócios"</span>],</p>
+                <p class="code-line indent"><span class="code-property">techStack</span>: [<span class="code-string">"Java"</span>, <span class="code-string">"Python"</span>, <span class="code-string">"JS"</span>, <span class="code-string">"SQL"</span>],</p>
+                <p class="code-line indent"><span class="code-property">businessFocus</span>: <span class="code-keyword">true</span>,</p>
+                <p class="code-line indent"><span class="code-property">bridgeBizTech</span>: () => <span class="code-string">"Soluções de Impacto"</span></p>
+                <p class="code-line">};</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Sobre Mim -->
+    <section id="about" class="section about-section section-white">
+      <div class="container">
+        <h2 class="section-title reveal">Sobre <span class="text-gradient">Mim</span></h2>
+        <div class="about-grid">
+          <div class="about-stats-panel">
+            <div class="glass-card stat-card reveal">
+              <span class="stat-number">8+</span>
+              <span class="stat-text">Anos de Experiência em Marketing e Comunicação</span>
+            </div>
+            <div class="glass-card stat-card reveal reveal-delay-2">
+              <span class="stat-number">600+</span>
+              <span class="stat-text">CNPJs Integrados na Gestão de Mídia</span>
+            </div>
+            <div class="glass-card stat-card reveal reveal-delay-3">
+              <span class="stat-number">R$ 1.5M</span>
+              <span class="stat-text">Verba Anual Gerenciada com Sucesso</span>
+            </div>
+            <div class="glass-card stat-card reveal reveal-delay-4">
+              <span class="stat-number">ADS</span>
+              <span class="stat-text">Formação Superior em Tecnologia</span>
+            </div>
+          </div>
+
+          <div class="about-text-content">
+            <h3 class="about-subtitle">Minha trajetória: Negócios, Marketing, Processos e Tecnologia</h3>
+            <p>
+              Sou formado em <strong>Análise e Desenvolvimento de Sistemas</strong> e direciono minha carreira com foco estratégico na área de tecnologia, especialmente em <strong>Análise de Sistemas, Negócios e Engenharia de Requisitos</strong>.
+            </p>
+            <p>
+              Somando minhas experiências em diferentes empresas, possuo mais de 8 anos de atuação na área de marketing e comunicação. Na Farmácias Associadas, atuo há mais de 5 anos na gestão de mídia e comunicação de uma rede com mais de 600 CNPJs em 6 estados, negociando contratos e acompanhando indicadores complexos com um budget anual de aproximadamente R$ 1,5 milhão. Essa experiência consolidou minha prática real na <strong>identificação de gargalos de processos, documentação minuciosa de demandas e acompanhamento crítico de entregas</strong> orientadas a resultados.
+            </p>
+            <p>
+              Hoje, levo essa bagagem comercial e analítica para o contexto da tecnologia: realizando o levantamento de requisitos, análise profunda de regras de negócio, mapeamento de processos ponta a ponta, especificação técnica, testes de software e documentação. Possuo base prática de programação em Java, Python, JavaScript e bancos de dados SQL, ferramentas que utilizo para me comunicar de igual para igual com times técnicos e otimizar o fluxo de desenvolvimento.
+            </p>
+            <p class="highlight-box">
+              Busco oportunidades como <strong>Analista de Sistemas, Analista de Negócios/Requisitos ou Desenvolvedor Júnior</strong>, unindo minha visão de processos de negócio, comunicação executiva clara e base técnica em constante evolução.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Áreas de Atuação -->
+    <section id="services" class="section services-section">
+      <div class="container">
+        <h2 class="section-title reveal">Áreas de <span class="text-gradient">Atuação</span></h2>
+        <p class="section-desc">Como conecto a visão de negócios e a engenharia de software para gerar valor real.</p>
+        
+        <div class="services-grid">
+          <!-- Card 1: Análise de Sistemas -->
+          <div class="glass-card service-card reveal">
+            <div class="service-icon">
+              <i data-lucide="layers"></i>
+            </div>
+            <h3>Análise de Sistemas</h3>
+            <p>Análise, modelagem e especificação lógica de sistemas, conectando necessidades do negócio a soluções tecnológicas por meio do levantamento de requisitos, avaliação de arquiteturas e integrações, mapeamento de processos, documentação, testes e apoio ao desenvolvimento.</p>
+          </div>
+
+          <!-- Card 2: Análise de Negócios e Requisitos -->
+          <div class="glass-card service-card reveal reveal-delay-2">
+            <div class="service-icon">
+              <i data-lucide="clipboard-list"></i>
+            </div>
+            <h3>Análise de Negócios e Requisitos</h3>
+            <p>Levantamento, análise e tradução de necessidades de stakeholders em requisitos funcionais e não-funcionais estruturados. Criação de histórias de usuário claras e detalhadas.</p>
+          </div>
+
+          <!-- Card 3: Mapeamento de Processos -->
+          <div class="glass-card service-card reveal reveal-delay-3">
+            <div class="service-icon">
+              <i data-lucide="git-fork"></i>
+            </div>
+            <h3>Mapeamento de Processos</h3>
+            <p>Mapeamento de processos As-Is e To-Be, identificação de gargalos e estruturação de fluxos de trabalho, simplificando processos manuais ou analógicos para transformá-los em requisitos claros, automatizáveis e orientados à eficiência.</p>
+          </div>
+
+          <!-- Card 4: Documentação e Testes -->
+          <div class="glass-card service-card reveal reveal-delay-4">
+            <div class="service-icon">
+              <i data-lucide="check-square"></i>
+            </div>
+            <h3>Documentação e Testes</h3>
+            <p>Criação de documentação técnica, dicionários de dados, diagramas de caso de uso e especificações funcionais, com planejamento e execução de testes para validar requisitos, identificar falhas e melhorar continuamente a qualidade das entregas.</p>
+          </div>
+
+          <!-- Card 5: Desenvolvimento Web -->
+          <div class="glass-card service-card reveal">
+            <div class="service-icon">
+              <i data-lucide="code-2"></i>
+            </div>
+            <h3>Desenvolvimento Web</h3>
+            <p>Construção de interfaces modernas, responsivas e limpas, unindo boas práticas de código (HTML/CSS/JS) com foco na experiência do usuário (UX/UI).</p>
+          </div>
+
+          <!-- Card 6: Automação de Tarefas -->
+          <div class="glass-card service-card reveal reveal-delay-2">
+            <div class="service-icon">
+              <i data-lucide="cpu"></i>
+            </div>
+            <h3>Automação de Tarefas</h3>
+            <p>Desenvolvimento de scripts funcionais (Python/JavaScript) para automatizar rotinas administrativas repetitivas, otimizando o tempo produtivo e reduzindo falhas humanas.</p>
+          </div>
+
+          <!-- Card 7: Apoio ao Desenvolvimento -->
+          <div class="glass-card service-card reveal reveal-delay-3">
+            <div class="service-icon">
+              <i data-lucide="users"></i>
+            </div>
+            <h3>Apoio ao Desenvolvimento</h3>
+            <p>Atuação como ponte de comunicação ágil entre o cliente final e a equipe de desenvolvimento, traduzindo regras de negócios complexas em documentação limpa e precisa.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Habilidades Técnicas -->
+    <section id="skills" class="section skills-section section-white">
+      <div class="container">
+        <h2 class="section-title reveal">Minhas <span class="text-gradient">Habilidades</span></h2>
+        <p class="section-desc">Tecnologias e ferramentas aplicadas na resolução de problemas e estruturação de projetos.</p>
+
+        <!-- Category Tabs -->
+        <div class="skills-tabs">
+          <button class="tab-btn active" data-tab="all">Todos</button>
+          <button class="tab-btn" data-tab="languages">Linguagens</button>
+          <button class="tab-btn" data-tab="frontend">Front-end</button>
+          <button class="tab-btn" data-tab="database">Banco de Dados</button>
+          <button class="tab-btn" data-tab="analysis">Análise & Processos</button>
+          <button class="tab-btn" data-tab="tools">Ferramentas / Outros</button>
+        </div>
+
+        <!-- Skills Container -->
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Linguagens -->
+          <div class="skill-badge" data-category="languages">
+            <span class="skill-icon text-gradient"><i data-lucide="terminal"></i></span>
+            <span class="skill-name">Java</span>
+          </div>
+          <div class="skill-badge" data-category="languages">
+            <span class="skill-icon text-gradient"><i data-lucide="terminal"></i></span>
+            <span class="skill-name">Python</span>
+          </div>
+          <div class="skill-badge" data-category="languages">
+            <span class="skill-icon text-gradient"><i data-lucide="terminal"></i></span>
+            <span class="skill-name">JavaScript</span>
+          </div>
+          <div class="skill-badge" data-category="languages">
+            <span class="skill-icon text-gradient"><i data-lucide="terminal"></i></span>
+            <span class="skill-name">Lógica de Programação</span>
+          </div>
+          <div class="skill-badge" data-category="languages">
+            <span class="skill-icon text-gradient"><i data-lucide="terminal"></i></span>
+            <span class="skill-name">Programação Orientada a Objetos (POO)</span>
+          </div>
+
+          <!-- Front-end -->
+          <div class="skill-badge" data-category="frontend">
+            <span class="skill-icon text-gradient"><i data-lucide="layout"></i></span>
+            <span class="skill-name">HTML5</span>
+          </div>
+          <div class="skill-badge" data-category="frontend">
+            <span class="skill-icon text-gradient"><i data-lucide="layout"></i></span>
+            <span class="skill-name">CSS3</span>
+          </div>
+          <div class="skill-badge" data-category="frontend">
+            <span class="skill-icon text-gradient"><i data-lucide="layout"></i></span>
+            <span class="skill-name">Desenvolvimento Web</span>
+          </div>
+
+          <!-- Banco de Dados -->
+          <div class="skill-badge" data-category="database">
+            <span class="skill-icon text-gradient"><i data-lucide="database"></i></span>
+            <span class="skill-name">Banco de Dados Relacional</span>
+          </div>
+          <div class="skill-badge" data-category="database">
+            <span class="skill-icon text-gradient"><i data-lucide="database"></i></span>
+            <span class="skill-name">SQL</span>
+          </div>
+
+          <!-- Análise e Processos -->
+          <div class="skill-badge" data-category="analysis">
+            <span class="skill-icon text-gradient"><i data-lucide="file-text"></i></span>
+            <span class="skill-name">Análise de Requisitos</span>
+          </div>
+          <div class="skill-badge" data-category="analysis">
+            <span class="skill-icon text-gradient"><i data-lucide="file-text"></i></span>
+            <span class="skill-name">Mapeamento de Processos</span>
+          </div>
+          <div class="skill-badge" data-category="analysis">
+            <span class="skill-icon text-gradient"><i data-lucide="file-text"></i></span>
+            <span class="skill-name">Documentação Técnica</span>
+          </div>
+          <div class="skill-badge" data-category="analysis">
+            <span class="skill-icon text-gradient"><i data-lucide="file-text"></i></span>
+            <span class="skill-name">Regras de Negócio</span>
+          </div>
+
+          <!-- Ferramentas -->
+          <div class="skill-badge" data-category="tools">
+            <span class="skill-icon text-gradient"><i data-lucide="check-square"></i></span>
+            <span class="skill-name">Testes de Software</span>
+          </div>
+          <div class="skill-badge" data-category="tools">
+            <span class="skill-icon text-gradient"><i data-lucide="git-branch"></i></span>
+            <span class="skill-name">Git & GitHub</span>
+          </div>
+          <div class="skill-badge" data-category="tools">
+            <span class="skill-icon text-gradient"><i data-lucide="users-2"></i></span>
+            <span class="skill-name">Metodologias Ágeis (Scrum/Kanban)</span>
+          </div>
+          <div class="skill-badge" data-category="tools">
+            <span class="skill-icon text-gradient"><i data-lucide="compass"></i></span>
+            <span class="skill-name">User Experience (UX) Design</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Projetos -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h2 class="section-title reveal">Meus <span class="text-gradient">Projetos</span></h2>
+        <p class="section-desc">Soluções desenvolvidas aplicando lógica de programação, automação e desenvolvimento de sistemas.</p>
+
+        <!-- Projects Grid (Loaded dynamically from script.js) -->
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Dynamic cards will be injected here by script.js -->
+        </div>
+        
+        <div class="projects-note">
+          <i data-lucide="info"></i>
+          <span>Novos projetos serão inseridos e atualizados constantemente através do meu repositório GitHub.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Experiência Profissional -->
+    <section id="experience" class="section experience-section section-white">
+      <div class="container">
+        <h2 class="section-title reveal">Experiência <span class="text-gradient">Profissional</span></h2>
+        <p class="section-desc">Minha jornada e como trago as habilidades de negócios e processos corporativos para a tecnologia.</p>
+
+        <div class="timeline">
+          <!-- Job 1 -->
+          <div class="timeline-item reveal">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2022 - Presente</div>
+            <div class="glass-card timeline-content job-card">
+              <span class="job-badge">Atual</span>
+              <h3 class="job-title">Assistente de Marketing Sênior II</h3>
+              <h4 class="job-company"><i data-lucide="building-2"></i> Rede Farmácias Associadas</h4>
+              <p class="job-desc">
+                Atuação no suporte estratégico e operacional de comunicação de uma rede com mais de 2.000 farmácias e mais de 600 CNPJs associados em 6 estados. Responsável pela articulação com áreas internas, comercial, agências de publicidade, veículos de comunicação e fornecedores.
+              </p>
+              
+              <h5 class="timeline-section-title">Destaques com forte viés de TI e Processos:</h5>
+              <ul class="job-bullets">
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Gestão de Contratos e Recursos:</strong> Negociação comercial de contratos de mídia e serviços de comunicação, com controle rigoroso de métricas e prazos associados a uma verba anual de <strong>R$ 1,5 milhão</strong>.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Auditoria de Dados e Sistemas:</strong> Acompanhamento e auditoria de veiculação em mais de 58 rádios usando a plataforma Audiency, validando relatórios sistemáticos de entrega e corrigindo gargalos de conformidade.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Apoio ao Desenvolvimento de Software:</strong> Colaboração ativa no planejamento estratégico, organização de arquitetura de informação (front-end) e apoio funcional no desenvolvimento do <strong>site oficial da Feira de Negócios</strong> e do <strong>portal interno corporativo</strong> da rede.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Otimização de Fluxos de Trabalho:</strong> Mapeamento e documentação das necessidades do departamento para subsidiar soluções digitais internas, conectando demandas operacionais de fornecedores com entregas de TI.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 2 -->
+          <div class="timeline-item reveal reveal-delay-2">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2020 - 2021</div>
+            <div class="glass-card timeline-content job-card">
+              <span class="job-badge">Experiência</span>
+              <h3 class="job-title">Assistente de Marketing</h3>
+              <h4 class="job-company"><i data-lucide="building-2"></i> Volpato Segurança</h4>
+              <p class="job-desc">
+                Suporte à criação de conteúdos estáticos e animados para as redes sociais da empresa, com foco em interação, comunicação visual e atendimento ao cliente. Responsável pela elaboração, revisão e otimização de criativos para campanhas digitais e offline.
+              </p>
+              
+              <h5 class="timeline-section-title">Responsabilidades e Destaques:</h5>
+              <ul class="job-bullets">
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Gestão de Redes Sociais:</strong> Criação de postagens estéticas e animadas para redes sociais, com foco em engajamento e comunicação visual de marca.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Desenvolvimento de Criativos:</strong> Elaboração, revisão e otimização de materiais publicitários para campanhas Google Ads e Facebook Ads, garantindo consistência visual e mensagem de marca.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Suporte ao Cliente:</strong> Interação direta com clientes através das redes sociais, respondendo dúvidas e fortalecendo o relacionamento com a marca.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>SEO, Design e Prototipagem:</strong> Aplicação de conceitos de otimização para mecanismos de busca em conteúdos digitais, além do uso do Figma na criação, organização visual e prototipagem de materiais.
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Job 3 -->
+          <div class="timeline-item reveal reveal-delay-3">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">2017 - 2020</div>
+            <div class="glass-card timeline-content job-card">
+              <span class="job-badge">Experiência</span>
+              <h3 class="job-title">Arte Finalista</h3>
+              <h4 class="job-company"><i data-lucide="building-2"></i> Gráfica ANS</h4>
+              <p class="job-desc">
+                Atuação focada em fechamento de arquivos, criação e conferência de peças gráficas, garantindo que os materiais estivessem prontos para impressão com qualidade e precisão. Realizava também conferência de chapas e prestava suporte técnico a clientes, auxiliando no fechamento correto de arquivos, padronização de cores e em demais dúvidas técnicas relacionadas ao design e produção gráfica.
+              </p>
+              
+              <h5 class="timeline-section-title">Responsabilidades e Destaques:</h5>
+              <ul class="job-bullets">
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Fechamento de Arquivos:</strong> Preparação técnica de arquivos para impressão, garantindo conformidade com especificações de cor, resolução e formatos adequados para produção.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Criação e Conferência de Peças Gráficas:</strong> Desenvolvimento e validação de layouts, designs e materiais gráficos para diversos clientes, assegurando consistência visual e qualidade técnica.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Suporte Técnico ao Cliente:</strong> Atendimento especializado a clientes com dúvidas sobre design, formatos, cores e processos de impressão, auxiliando na resolução de problemas técnicos.
+                </li>
+                <li>
+                  <i data-lucide="chevron-right"></i> <strong>Padronização de Cores e Qualidade:</strong> Conferência de chapas e validação de cores, garantindo que todos os materiais finais atendam aos padrões de qualidade e especificações do cliente.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Formação -->
+    <section id="education" class="section education-section">
+      <div class="container">
+        <h2 class="section-title reveal">Formação <span class="text-gradient">Acadêmica</span></h2>
+        <p class="section-desc">Minha base educacional e a busca contínua por conhecimento em engenharia de sistemas e negócios.</p>
+
+        <div class="education-grid">
+          <!-- Main Degree -->
+          <div class="glass-card education-main-card reveal">
+            <div class="edu-header">
+              <div class="edu-icon"><i data-lucide="graduation-cap"></i></div>
+              <div class="edu-title-group">
+                <h3>Análise e Desenvolvimento de Sistemas</h3>
+                <h4>Universidade Estácio de Sá</h4>
+              </div>
+              <span class="edu-status status-concluido">Concluído</span>
+            </div>
+            <div class="edu-body">
+              <div class="edu-meta">
+                <span><i data-lucide="calendar"></i> Junho/2023 a Junho/2026</span>
+              </div>
+              <p class="edu-desc">
+                Formação superior tecnológica voltada ao ciclo completo de desenvolvimento de software, abrangendo análise, projeto, implementação, testes, documentação, bancos de dados e manutenção de sistemas de informação e soluções digitais.
+              </p>
+              <div class="edu-curriculum">
+                <h5>Foco Acadêmico Prático:</h5>
+                <div class="curriculum-tags">
+                  <span>Lógica de Programação</span>
+                  <span>Programação Orientada a Objetos</span>
+                  <span>Estrutura de Dados</span>
+                  <span>Banco de Dados e SQL</span>
+                  <span>Engenharia de Requisitos</span>
+                  <span>Metodologias Ágeis (Scrum)</span>
+                  <span>Testes de Software</span>
+                  <span>Desenvolvimento Web</span>
+                  <span>Segurança da Informação</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Other courses -->
+          <div class="education-secondary-list">
+            <!-- Course 1 -->
+            <div class="glass-card education-item-small reveal">
+              <span class="course-date">ESPM</span>
+              <div class="course-details">
+                <h4>User Experience Design: Conceitos, Ferramentas e Aplicações</h4>
+                <p>Abordagem em design centrado no usuário, testes de usabilidade, mapeamento de jornadas de usuário e prototipagem de interfaces de software.</p>
+              </div>
+            </div>
+
+            <!-- Course 2 -->
+            <div class="glass-card education-item-small reveal reveal-delay-2">
+              <span class="course-date">ESPM</span>
+              <div class="course-details">
+                <h4>Gestão Estratégica em Negociação</h4>
+                <p>Técnicas de negociação corporativa, resolução de conflitos e alinhamento de interesses entre stakeholders em cenários comerciais de alta complexidade.</p>
+              </div>
+            </div>
+
+            <!-- Course 3 -->
+            <div class="glass-card education-item-small reveal reveal-delay-3">
+              <span class="course-date">Fundação Bradesco</span>
+              <div class="course-details">
+                <h4>Linguagem de Programação Python</h4>
+                <p>Fundamentos da linguagem Python, sintaxe, estruturas condicionais e de repetição, funções e introdução à manipulação de arquivos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. Certificações e Eventos -->
+    <section id="certifications" class="section certs-section">
+      <div class="container">
+        <h2 class="section-title reveal">Certificações & <span class="text-gradient">Eventos</span></h2>
+        <p class="section-desc">Certificados obtidos e participação ativa em fóruns de inovação, negócios e tecnologia.</p>
+
+        <div class="certs-grid" id="certificationsGrid">
+          <!-- Certifications dynamic items will be populated from script.js to make it easy to edit -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. Contato -->
+    <section id="contact" class="section contact-section section-white">
+      <div class="container">
+        <div class="contact-card glass-card reveal">
+          <div class="contact-layout">
+            <div class="contact-info-panel">
+              <h2 class="contact-card-title">Vamos conversar sobre tecnologia, sistemas e oportunidades?</h2>
+              <p class="contact-card-text">
+                Estou disponível para entrevistas, propostas de projetos e troca de ideias sobre análise de sistemas, negócios, requisitos, engenharia e desenvolvimento de software.
+              </p>
+              <div class="contact-direct-links">
+                <div class="contact-item">
+                  <i data-lucide="mail"></i>
+                  <div>
+                    <span>E-mail</span>
+                    <strong id="contactEmailTxt">Carregando...</strong>
+                  </div>
+                </div>
+                <div class="contact-item">
+                  <i data-lucide="map-pin"></i>
+                  <div>
+                    <span>Localização</span>
+                    <strong>Rio Grande do Sul, Brasil</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="contact-actions-panel">
+              <h3 class="panel-subtitle">Conecte-se comigo</h3>
+              <div class="contact-buttons-list">
+                <a href="#" id="contactWhatsappBtn" class="btn btn-lg btn-whatsapp" target="_blank">
+                  <i data-lucide="phone"></i> Chamar no WhatsApp
+                </a>
+                <a href="#" id="contactLinkedinBtn" class="btn btn-lg btn-linkedin" target="_blank">
+                  <i data-lucide="linkedin"></i> LinkedIn
+                </a>
+                <a href="#" id="contactGithubBtn" class="btn btn-lg btn-github" target="_blank">
+                  <i data-lucide="github"></i> GitHub
+                </a>
+                <a href="#" id="contactEmailBtn" class="btn btn-lg btn-secondary">
+                  <i data-lucide="mail"></i> Enviar E-mail
+                </a>
+                <a href="#" id="contactResumeBtn" class="btn btn-lg btn-outline" target="_blank" download>
+                  <i data-lucide="file-down"></i> Baixar Currículo (PDF)
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-container">
+      <p class="copyright">&copy; <span id="currentYear">2026</span> Guilherme Cardoso. Todos os direitos reservados.</p>
+      <p class="tech-stack-used">Desenvolvido com HTML5, CSS3 & JS (Vanilla)</p>
+    </div>
+  </footer>
+
+  <!-- Script File -->
+  <script src="script.js"></script>
+</body>
+</html>
