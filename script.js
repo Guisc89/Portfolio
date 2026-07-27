@@ -18,7 +18,7 @@ const CONFIG = {
   githubUsername: 'Guisc89',                  // Reservado para uma futura integração com a API do GitHub
   githubReposLimit: 6,                        // Reservado para limitar resultados de uma futura integração
   emailAddress: 'oguicardoso@outlook.com',         // Ex: 'oguicardoso@outlook.com'
-  resumeUrl: 'assets/curriculo-guilherme.pdf',   // Ex: 'assets/curriculo-guilherme.pdf' ou link do drive
+  resumeUrl: 'assets/curriculo-conceito-guilherme-cardoso.pdf',
 };
 
 /**
