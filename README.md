@@ -1,5 +1,3 @@
-# Portfólio Profissional — Guilherme Cardoso
-
 # Guilherme Cardoso | Portfólio Profissional
 
 ### Negócios, processos e tecnologia conectados para criar soluções digitais.
@@ -23,3 +21,4 @@ No meu portfólio, você encontrará:
 Será um prazer apresentar melhor minha trajetória, trocar experiências e conversar sobre oportunidades, projetos e soluções em tecnologia.
 
 [LinkedIn](https://www.linkedin.com/in/guilherme-cardoso-02111989) · [GitHub](https://github.com/Guisc89)
+
