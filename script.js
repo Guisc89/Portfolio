@@ -22,27 +22,101 @@ const CONFIG = {
 };
 
 /**
- * 2. DYNAMIC PROJECTS LIST
- * Lista manual de fallback caso a API do GitHub não esteja disponível.
+ * 2. DYNAMIC PROJECTS LISTS
+ * Cases profissionais em destaque e projetos de estudo em formato compacto.
  */
-const DEFAULT_PROJECTS = [
+const PROFESSIONAL_PROJECTS = [
+  {
+    id: 1,
+    prominence: 'primary',
+    eyebrow: 'Projeto profissional · Automação',
+    icon: 'workflow',
+    title: 'Sistema de Automação de Encartes e Materiais de Campanha',
+    description: [
+      'Desenvolvi uma solução que automatiza a criação do preçário e os desdobramentos de campanhas em diferentes formatos, incluindo telas, cards e materiais digitais.',
+      'Uma operação manual e repetitiva, que exigia dois dias inteiros de trabalho para produzir um único conjunto de materiais, passou a ser concluída em menos de cinco minutos, com maior padronização e praticamente sem intervenção manual.'
+    ],
+    impact: {
+      label: 'Tempo de produção',
+      before: '2 DIAS',
+      after: 'MENOS DE 5 MINUTOS',
+      ariaLabel: 'Tempo de produção reduzido de dois dias para menos de cinco minutos'
+    },
+    indicators: [
+      'Mais de 99% de redução no tempo de execução',
+      'Um único fluxo gerando diversos formatos',
+      'Eliminação de tarefas manuais repetitivas',
+      'Maior padronização dos materiais'
+    ],
+    role: 'Identificação do gargalo, mapeamento do processo, definição das regras de negócio, construção da solução, testes e validação do fluxo.',
+    competencies: [
+      'Automação',
+      'Análise de processos',
+      'Levantamento de requisitos',
+      'Regras de negócio',
+      'Lógica de programação',
+      'Experiência do usuário',
+      'Resolução de problemas reais'
+    ],
+    technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign']
+  },
+  {
+    id: 2,
+    prominence: 'secondary',
+    eyebrow: 'Projeto profissional · Inteligência de mídia',
+    icon: 'radio-tower',
+    title: 'Sistema de Inteligência para Abrangência de Rádios',
+    description: [
+      'Transformei uma planilha de controle em um sistema web para centralizar, atualizar e analisar informações sobre a cobertura territorial das rádios contratadas pela Farmácias Associadas.',
+      'A solução ajuda a identificar municípios alcançados, possíveis sobreposições entre emissoras e oportunidades de otimização. Antes, as contratações podiam ser definidas por município sem uma visão completa da abrangência territorial, inclusive com diferentes rádios cobrindo as mesmas regiões.'
+    ],
+    indicators: [
+      'Aproximadamente 58 rádios analisadas',
+      'Cerca de 600 associados impactados',
+      'Dados centralizados em um sistema web',
+      'Decisões de mídia orientadas por cobertura territorial'
+    ],
+    role: 'Levantamento do problema, organização e estruturação dos dados, definição das funcionalidades, construção do sistema no Replit com Vibe Coding, testes e evolução da solução.',
+    competencies: [
+      'Análise de negócios',
+      'Levantamento de requisitos',
+      'Mapeamento de processos',
+      'Modelagem de dados',
+      'Desenvolvimento de sistemas',
+      'Experiência do usuário',
+      'Decisões baseadas em dados'
+    ],
+    technologies: []
+  }
+];
+
+const ACADEMIC_PROJECTS = [
   {
     id: 1,
     title: 'Calculadora Web',
     description: 'Calculadora funcional desenvolvida com HTML, CSS e JavaScript, aplicando manipulação de DOM, tratamento de eventos, lógica matemática básica e interface responsiva adaptável.',
     solution: 'Demonstra domínio prático de JavaScript Vanilla, controle de eventos no navegador, estrutura semântica e estilização flexível com CSS Grid e Flexbox.',
     technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubUrl: 'INSERIR_GITHUB_CALCULADORA', // Deixe vazio ou preencha
-    demoUrl: 'INSERIR_DEMO_CALCULADORA'      // Deixe vazio ou preencha
+    githubUrl: 'INSERIR_GITHUB_CALCULADORA',
+    demoUrl: 'INSERIR_DEMO_CALCULADORA'
   },
   {
     id: 2,
-    title: 'Script para Adobe InDesign',
-    description: 'Script automatizado desenvolvido para rodar dentro da suíte Adobe InDesign, automatizando a inserção de datas formatadas e dados dinâmicos em páginas de mídia impressa.',
-    solution: 'Resolve o gargalo operacional de edição manual e repetitiva em campanhas semanais de grande escala (Rede Farmácias Associadas), minimizando erros humanos e otimizando o fluxo de produção em mais de 60%.',
-    technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign'],
-    githubUrl: 'INSERIR_GITHUB_SCRIPT_INDESIGN',
-    demoUrl: '' // Sem demonstração ao vivo por rodar em desktop
+    title: 'Página inspirada na Netflix',
+    description: 'Recriação da tela inicial da Netflix para praticar composição visual e estruturação de interfaces. A página reúne hero, seletor de idioma, formulário de e-mail com validação nativa, seções de benefícios e rodapé.',
+    solution: 'Demonstra organização de layout com Flexbox e CSS Grid, hierarquia visual, uso de imagens e gradientes e adaptação básica da interface para telas menores.',
+    technologies: ['HTML5', 'CSS3', 'Flexbox', 'CSS Grid'],
+    githubUrl: 'https://github.com/Guisc89/Pagina-Netflix',
+    demoUrl: 'https://guisc89.github.io/Pagina-Netflix/'
+  },
+  {
+    id: 3,
+    title: 'Projeto Python — Fundação Bradesco',
+    description: 'Linguagem de Programação Python — Fundação Bradesco.',
+    solution: '',
+    technologies: ['Python'],
+    githubUrl: '',
+    demoUrl: ''
   }
 ];
 
@@ -96,8 +170,6 @@ const CERTIFICATIONS = [
 /* ==========================================================================
    MAIN CONTROLLER - RUNS ON DOM CONTENT LOADED
    ========================================================================== */
-const PROJECTS = [...DEFAULT_PROJECTS];
-
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize dynamic components
   initConfiguration();
@@ -106,6 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTheme();
   initMobileMenu();
   initScrollspy();
+  initServicesAccordion();
   initSkillsFilter();
   initExperienceAccordion();
   initTypewriter();
@@ -214,46 +287,175 @@ function setElementLink(id, url) {
  * 5. RENDERS DYNAMIC PROJECTS CARDS
  */
 function renderProjects() {
-  const grid = document.getElementById('projectsGrid');
-  if (!grid) return;
+  const professionalGrid = document.getElementById('professionalProjects');
+  const academicGrid = document.getElementById('academicProjectsGrid');
 
-  grid.innerHTML = ''; // Clear fallback
+  if (professionalGrid) {
+    professionalGrid.innerHTML = '';
+    PROFESSIONAL_PROJECTS.forEach((project, index) => {
+      professionalGrid.appendChild(createProfessionalProjectCard(project, index));
+    });
+  }
 
-  PROJECTS.forEach(project => {
-    // Generate GitHub & Demo icons dynamically based on configuration presence
-    const githubLink = project.githubUrl && !project.githubUrl.startsWith('INSERIR_') 
-      ? `<a href="${project.githubUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Código Fonte no GitHub"><i data-lucide="github"></i></a>` 
-      : '';
-      
-    const demoLink = project.demoUrl && !project.demoUrl.startsWith('INSERIR_') 
-      ? `<a href="${project.demoUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Demonstração Online"><i data-lucide="external-link"></i></a>` 
-      : '';
+  if (academicGrid) {
+    academicGrid.innerHTML = '';
+    ACADEMIC_PROJECTS.forEach((project, index) => {
+      academicGrid.appendChild(createAcademicProjectCard(project, index));
+    });
+  }
+}
 
-    const technologiesBadges = project.technologies.map(tech => `<span class="project-tag">${tech}</span>`).join('');
+function renderProjectTags(technologies = []) {
+  if (!technologies.length) return '';
 
-    const card = document.createElement('article');
-    const delay = (PROJECTS.indexOf(project) % 4) + 1;
-    card.className = `glass-card project-card reveal${delay > 1 ? ' reveal-delay-' + delay : ''}`;
-    card.innerHTML = `
-      <div class="project-header">
-        <div class="project-tag-wrap">
-          ${technologiesBadges}
+  return `
+    <div class="project-tag-wrap" aria-label="Tecnologias utilizadas">
+      ${technologies.map(tech => `<span class="project-tag">${tech}</span>`).join('')}
+    </div>
+  `;
+}
+
+function renderProjectActions(project) {
+  const githubLink = project.githubUrl && !project.githubUrl.startsWith('INSERIR_')
+    ? `<a href="${project.githubUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Código-fonte no GitHub"><i data-lucide="github" aria-hidden="true"></i></a>`
+    : '';
+
+  const demoLink = project.demoUrl && !project.demoUrl.startsWith('INSERIR_')
+    ? `<a href="${project.demoUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Demonstração online"><i data-lucide="external-link" aria-hidden="true"></i></a>`
+    : '';
+
+  return githubLink || demoLink
+    ? `<div class="project-actions">${githubLink}${demoLink}</div>`
+    : '';
+}
+
+function createProfessionalProjectCard(project, index) {
+  const article = document.createElement('article');
+  const titleId = `professional-project-${project.id}-title`;
+  const indicatorId = `professional-project-${project.id}-indicators`;
+  const delayClass = index > 0 ? ` reveal-delay-${Math.min(index + 1, 4)}` : '';
+  const additionalDescription = project.description.slice(1);
+  const impact = project.impact
+    ? `
+      <div class="project-impact" aria-label="${project.impact.ariaLabel}">
+        <span class="project-impact-label">${project.impact.label}</span>
+        <span class="project-impact-before">${project.impact.before}</span>
+        <span class="project-impact-arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
+        <strong class="project-impact-after">${project.impact.after}</strong>
+      </div>
+    `
+    : '';
+  const quickFacts = !project.impact
+    ? `
+      <ul class="project-quick-facts" aria-label="Números principais do projeto">
+        ${project.indicators.slice(0, 2).map(indicator => `
+          <li><i data-lucide="circle-check" aria-hidden="true"></i><span>${indicator}</span></li>
+        `).join('')}
+      </ul>
+    `
+    : '';
+
+  article.className = `glass-card project-case project-case--${project.prominence} reveal${delayClass}`;
+  article.setAttribute('aria-labelledby', titleId);
+  article.innerHTML = `
+    <header class="project-case-header">
+      <span class="project-case-eyebrow">
+        <i data-lucide="${project.icon}" aria-hidden="true"></i>
+        ${project.eyebrow}
+      </span>
+      ${renderProjectTags(project.technologies)}
+    </header>
+
+    <div class="project-case-hero">
+      <div class="project-case-copy">
+        <h3 class="project-case-title" id="${titleId}">${project.title}</h3>
+        <div class="project-case-description">
+          <p>${project.description[0]}</p>
         </div>
-        <div class="project-actions">
-          ${githubLink}
-          ${demoLink}
+        ${quickFacts}
+      </div>
+      ${impact}
+    </div>
+
+    <details class="project-disclosure">
+      <summary class="project-disclosure-toggle">
+        <span class="project-disclosure-label">
+          <i data-lucide="list-plus" aria-hidden="true"></i>
+          <span class="project-disclosure-closed">Ver detalhes do projeto</span>
+          <span class="project-disclosure-open">Ocultar detalhes</span>
+        </span>
+        <i class="project-disclosure-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
+      </summary>
+
+      <div class="project-disclosure-content">
+        ${additionalDescription.length ? `
+          <div class="project-detail-description">
+            ${additionalDescription.map(paragraph => `<p>${paragraph}</p>`).join('')}
+          </div>
+        ` : ''}
+
+        <div class="project-results-block" aria-labelledby="${indicatorId}">
+          <h4 class="project-block-title" id="${indicatorId}">Indicadores de impacto</h4>
+          <ul class="project-results-list">
+            ${project.indicators.map(indicator => `
+              <li>
+                <i data-lucide="check-circle-2" aria-hidden="true"></i>
+                <span>${indicator}</span>
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div class="project-case-details">
+          <div class="project-detail-block">
+            <h4 class="project-block-title">Minha atuação</h4>
+            <p>${project.role}</p>
+          </div>
+          <div class="project-detail-block">
+            <h4 class="project-block-title">Competências demonstradas</h4>
+            <ul class="project-competencies-list">
+              ${project.competencies.map(competency => `<li>${competency}</li>`).join('')}
+            </ul>
+          </div>
         </div>
       </div>
-      <h3 class="project-title">${project.title}</h3>
-      <p class="project-desc">${project.description}</p>
-      <div class="project-meta-box">
-        <strong>O que resolve / demonstra:</strong>
-        <span>${project.solution}</span>
-      </div>
-    `;
+    </details>
+  `;
 
-    grid.appendChild(card);
-  });
+  return article;
+}
+
+function createAcademicProjectCard(project, index) {
+  const article = document.createElement('article');
+  const delay = (index % 3) + 1;
+  const description = project.description ? `<p class="project-desc">${project.description}</p>` : '';
+  const solution = project.solution
+    ? `
+      <details class="academic-project-disclosure">
+        <summary>Ver o que demonstra</summary>
+        <div class="project-meta-box">
+          <span>${project.solution}</span>
+        </div>
+      </details>
+    `
+    : '';
+
+  article.className = `glass-card project-card academic-project-card reveal${delay > 1 ? ` reveal-delay-${delay}` : ''}`;
+  article.innerHTML = `
+    <header class="project-header">
+      <span class="academic-project-label">
+        <i data-lucide="code-2" aria-hidden="true"></i>
+        Projeto de estudo
+      </span>
+      ${renderProjectActions(project)}
+    </header>
+    <h4 class="project-title">${project.title}</h4>
+    ${description}
+    ${renderProjectTags(project.technologies)}
+    ${solution}
+  `;
+
+  return article;
 }
 
 /**
@@ -421,7 +623,26 @@ function initScrollspy() {
 }
 
 /**
- * 10. INTERACTIVE SKILLS FILTER
+ * 10. SERVICES ACCORDION
+ * Keeps the section compact by showing one detailed area at a time.
+ */
+function initServicesAccordion() {
+  const serviceItems = Array.from(document.querySelectorAll('.services-section .service-item'));
+  if (!serviceItems.length) return;
+
+  serviceItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+
+      serviceItems.forEach(otherItem => {
+        if (otherItem !== item) otherItem.open = false;
+      });
+    });
+  });
+}
+
+/**
+ * 11. INTERACTIVE SKILLS FILTER
  */
 function initSkillsFilter() {
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -457,7 +678,7 @@ function initSkillsFilter() {
 }
 
 /**
- * 11. EXPERIENCE ACCORDION
+ * 12. EXPERIENCE ACCORDION
  * Keeps the current role open and condenses previous positions.
  */
 function initExperienceAccordion() {
@@ -525,7 +746,7 @@ function initExperienceAccordion() {
 }
 
 /**
- * 11. TYPEWRITER EFFECT
+ * 13. TYPEWRITER EFFECT
  */
 function initTypewriter() {
   const el = document.getElementById('typewriter');
@@ -560,7 +781,7 @@ function initTypewriter() {
 }
 
 /**
- * 12. UNIVERSE PARALLAX BACKGROUND EFFECT
+ * 14. UNIVERSE PARALLAX BACKGROUND EFFECT
  * Moves glowing orbs and the starfield background in sync with the mouse pointer
  */
 function initUniverseEffect() {
@@ -600,7 +821,7 @@ function initUniverseEffect() {
 }
 
 /**
- * 13. SCROLL REVEAL ANIMATION
+ * 15. SCROLL REVEAL ANIMATION
  * Uses IntersectionObserver to animate elements into view with staggered delays
  */
 function initScrollReveal() {
@@ -629,7 +850,7 @@ function initScrollReveal() {
 }
 
 /**
- * 14. COUNTER ANIMATION
+ * 16. COUNTER ANIMATION
  * Animates numbers from 0 to their target when scrolled into view
  */
 function initCounterAnimation() {
@@ -693,11 +914,11 @@ function initCounterAnimation() {
 }
 
 /**
- * 15. CARD TILT 3D EFFECT
+ * 17. CARD TILT 3D EFFECT
  * Adds a subtle 3D tilt on mouseover for service/glass cards
  */
 function initCardTilt() {
-  const cards = document.querySelectorAll('.service-card.glass-card, .project-card.glass-card, .cert-card.glass-card');
+  const cards = document.querySelectorAll('.project-card.glass-card, .cert-card.glass-card');
   if (!cards.length || !window.matchMedia('(hover: hover)').matches) return;
 
   cards.forEach(card => {
@@ -720,7 +941,7 @@ function initCardTilt() {
 }
 
 /**
- * 16. HERO PROFESSIONAL CARD TILT
+ * 18. HERO PROFESSIONAL CARD TILT
  * Composes a smooth pointer-driven 3D tilt with the card's CSS float animation.
  */
 function initHeroCardTilt() {
@@ -773,7 +994,7 @@ function initHeroCardTilt() {
 }
 
 /**
- * 17. SMOOTH NAV LINK INTERACTIONS
+ * 19. SMOOTH NAV LINK INTERACTIONS
  * Adds animated underline indicator to nav links on hover
  */
 function initSmoothNavLinks() {
