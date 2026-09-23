@@ -297,35 +297,35 @@
             <p class="capabilities-copy">Conhecimentos que conectam análise, desenvolvimento e experiência do usuário.</p>
 
             <nav class="capability-list" aria-label="Categorias de competências">
-              <button class="capability-item active" type="button">
-                <span class="item-ico item-grid" aria-hidden="true"></span>
+              <button class="capability-item active" type="button" data-capability-filter="all" aria-pressed="true">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="layout-grid"></i></span>
                 <span class="item-label">Todos</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
-              <button class="capability-item" type="button">
-                <span class="item-ico item-code" aria-hidden="true">&lt;/&gt;</span>
+              <button class="capability-item" type="button" data-capability-filter="languages" aria-pressed="false">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="code-2"></i></span>
                 <span class="item-label">Linguagens</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
-              <button class="capability-item" type="button">
-                <span class="item-ico item-monitor" aria-hidden="true"></span>
+              <button class="capability-item" type="button" data-capability-filter="frontend" aria-pressed="false">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="monitor"></i></span>
                 <span class="item-label">Front-end</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
-              <button class="capability-item" type="button">
-                <span class="item-ico item-db" aria-hidden="true"></span>
+              <button class="capability-item" type="button" data-capability-filter="database" aria-pressed="false">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="database"></i></span>
                 <span class="item-label">Banco de Dados</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
-              <button class="capability-item" type="button">
-                <span class="item-ico item-flow" aria-hidden="true"></span>
+              <button class="capability-item" type="button" data-capability-filter="analysis" aria-pressed="false">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="file-text"></i></span>
                 <span class="item-label">Análise &amp; Processos</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
-              <button class="capability-item" type="button">
-                <span class="item-ico item-tools" aria-hidden="true"></span>
+              <button class="capability-item" type="button" data-capability-filter="tools" aria-pressed="false">
+                <span class="item-ico" aria-hidden="true"><i data-lucide="wrench"></i></span>
                 <span class="item-label">Ferramentas / Outros</span>
-                <span class="item-arrow">→</span>
+                <i class="item-arrow" data-lucide="arrow-right" aria-hidden="true"></i>
               </button>
             </nav>
           </aside>
@@ -335,59 +335,59 @@
             <h2 class="capabilities-content-title">Ferramentas e competências</h2>
             <p class="capabilities-content-subtitle">Uma visão dos conhecimentos que aplico e desenvolvo.</p>
 
-            <div class="tool-category">
+            <div class="tool-category" data-capability-category="languages">
               <h3>LINGUAGENS</h3>
               <div class="tool-row">
-                <div class="tool-item"><span class="tool-icon java">☕</span><span>Java</span></div>
-                <div class="tool-item"><span class="tool-icon python">🐍</span><span>Python</span></div>
-                <div class="tool-item"><span class="tool-icon js">JS</span><span>JavaScript</span></div>
-                <div class="tool-item"><span class="tool-icon general">⚙</span><span>Lógica de Programação</span></div>
-                <div class="tool-item wide"><span class="tool-icon general">◫</span><span>Programação Orientada a Objetos (POO)</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="" width="27" height="27"></span><span>Java</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="" width="27" height="27"></span><span>Python</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="" width="27" height="27"></span><span>JavaScript</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="settings"></i></span><span>Lógica de Programação</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="brain-circuit"></i></span><span>Programação Orientada<br>a Objetos (POO)</span></div>
               </div>
             </div>
 
-            <div class="tool-category">
+            <div class="tool-category" data-capability-category="frontend">
               <h3>FRONT-END</h3>
               <div class="tool-row">
-                <div class="tool-item"><span class="tool-icon html">&lt;/&gt;</span><span>HTML5</span></div>
-                <div class="tool-item"><span class="tool-icon css">{ }</span><span>CSS3</span></div>
-                <div class="tool-item wide"><span class="tool-icon general">▣</span><span>Desenvolvimento Web</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="" width="27" height="27"></span><span>HTML5</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="" width="27" height="27"></span><span>CSS3</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="monitor"></i></span><span>Desenvolvimento Web</span></div>
               </div>
             </div>
 
-            <div class="tool-category">
+            <div class="tool-category" data-capability-category="database">
               <h3>BANCO DE DADOS</h3>
               <div class="tool-row">
-                <div class="tool-item"><span class="tool-icon db">🗄</span><span>Banco de Dados Relacional</span></div>
-                <div class="tool-item"><span class="tool-icon sql">SQL</span><span>SQL</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="database"></i></span><span>Banco de Dados Relacional</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="database"></i></span><span>SQL</span></div>
               </div>
             </div>
 
-            <div class="tool-category">
+            <div class="tool-category" data-capability-category="analysis">
               <h3>ANÁLISE &amp; PROCESSOS</h3>
               <div class="tool-row">
-                <div class="tool-item"><span class="tool-icon general">▤</span><span>Análise de Requisitos</span></div>
-                <div class="tool-item"><span class="tool-icon general">▣</span><span>Documentação Técnica</span></div>
-                <div class="tool-item"><span class="tool-icon general">↗</span><span>Mapeamento de Processos</span></div>
-                <div class="tool-item"><span class="tool-icon general">◫</span><span>Regras de Negócio</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="file-check-2"></i></span><span>Análise de Requisitos</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="workflow"></i></span><span>Mapeamento de Processos</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="file-text"></i></span><span>Documentação Técnica</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="network"></i></span><span>Regras de Negócio</span></div>
               </div>
             </div>
 
-            <div class="tool-category">
+            <div class="tool-category" data-capability-category="tools">
               <h3>FERRAMENTAS / OUTROS</h3>
               <div class="tool-row">
-                <div class="tool-item"><span class="tool-icon general">✓</span><span>Testes de Software</span></div>
-                <div class="tool-item"><span class="tool-icon general">◌</span><span>Metodologias Ágeis<br>(Scrum/Kanban)</span></div>
-                <div class="tool-item"><span class="tool-icon adobe">A</span><span>Pacote Adobe</span></div>
-                <div class="tool-item"><span class="tool-icon general">⌘</span><span>Git &amp; GitHub</span></div>
-                <div class="tool-item"><span class="tool-icon general">◔</span><span>User Experience (UX) Design</span></div>
-                <div class="tool-item"><span class="tool-icon figma">F</span><span>Figma</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="square-check-big"></i></span><span>Testes de Software</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon github-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg" alt="" width="27" height="27"></span><span>Git &amp; GitHub</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="users"></i></span><span>Metodologias Ágeis<br>(Scrum/Kanban)</span></div>
+                <div class="tool-item"><span class="tool-icon line-icon" aria-hidden="true"><i data-lucide="palette"></i></span><span>User Experience (UX) Design</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon adobe-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/illustrator/illustrator-plain.svg" alt="" width="27" height="27"></span><span>Pacote Adobe</span></div>
+                <div class="tool-item"><span class="tool-icon brand-icon" aria-hidden="true"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg" alt="" width="27" height="27"></span><span>Figma</span></div>
               </div>
             </div>
 
-            <button class="project-cta" type="button">
-              Conheça meus projetos <span>↗</span>
-            </button>
+            <a class="project-cta" href="#projects">
+              Conheça meus projetos <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </a>
           </div>
         </div>
       </div>

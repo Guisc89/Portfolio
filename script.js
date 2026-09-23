@@ -207,6 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initScrollspy();
   initServicesAccordion();
   initSkillsFilter();
+  initCapabilitiesBoard();
   initExperienceAccordion();
   initTypewriter();
   initUniverseEffect();
@@ -728,6 +729,32 @@ function initSkillsFilter() {
         } else {
           badge.classList.add('hidden');
         }
+      });
+    });
+  });
+}
+
+function initCapabilitiesBoard() {
+  const filterButtons = Array.from(document.querySelectorAll('[data-capability-filter]'));
+  const categories = Array.from(document.querySelectorAll('[data-capability-category]'));
+
+  if (!filterButtons.length || !categories.length) return;
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedCategory = button.dataset.capabilityFilter;
+
+      filterButtons.forEach(item => {
+        const isActive = item === button;
+        item.classList.toggle('active', isActive);
+        item.setAttribute('aria-pressed', String(isActive));
+      });
+
+      categories.forEach(category => {
+        const shouldShow = selectedCategory === 'all'
+          || category.dataset.capabilityCategory === selectedCategory;
+
+        category.hidden = !shouldShow;
       });
     });
   });
