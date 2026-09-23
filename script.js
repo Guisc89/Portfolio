@@ -21,6 +21,8 @@ const PROFESSIONAL_PROJECTS = [
     eyebrow: 'Projeto de portfólio · IA Aplicada',
     icon: 'compass',
     title: 'Bússola Capital — Agente de IA para Análise Financeira',
+    roleSummary: 'Arquitetura, integrações, prompts, interface e publicação.',
+    resultSummary: 'Dados de mercado transformados em um relatório estruturado e validado.',
     description: [
       'Desenvolvi um agente de inteligência artificial que analisa ações, FIIs e criptomoedas em tempo real e gera relatórios estruturados com pontos fortes, riscos e veredito de investimento.',
       'O sistema consome dados reais do Yahoo Finance, envia para análise por um LLM (Qwen 3.8 via Groq) com prompt de analista sênior, valida a resposta contra contratos Pydantic para defesa contra alucinações, e apresenta tudo em uma interface web profissional com cache inteligente e tratamento robusto de erros.'
@@ -51,7 +53,15 @@ const PROFESSIONAL_PROJECTS = [
     ],
     technologies: ['Python', 'Streamlit', 'Groq (LLM)', 'Pydantic', 'yfinance', 'OOP', 'SOLID'],
     githubUrl: 'https://github.com/Guisc89/agente-financeiro',
-    demoUrl: 'https://agente-financeiro-io.streamlit.app/'
+    demoUrl: 'https://agente-financeiro-io.streamlit.app/',
+    media: [
+      {
+        type: 'embed',
+        src: 'https://agente-financeiro-io.streamlit.app/?embed=true',
+        title: 'Demonstração interativa do Bússola Capital',
+        caption: 'Aplicação publicada — explore a interface ou abra a demonstração em uma nova aba.'
+      }
+    ]
   },
   {
     id: 2,
@@ -59,6 +69,8 @@ const PROFESSIONAL_PROJECTS = [
     eyebrow: 'Projeto profissional · Automação',
     icon: 'workflow',
     title: 'Sistema de Automação de Encartes e Materiais de Campanha',
+    roleSummary: 'Diagnóstico, regras de negócio, automação, testes e validação.',
+    resultSummary: 'Produção reduzida de dois dias para menos de cinco minutos.',
     description: [
       'Desenvolvi uma solução que automatiza a criação do preçário e os desdobramentos de campanhas em diferentes formatos, incluindo telas, cards e materiais digitais.',
       'Uma operação manual e repetitiva, que exigia dois dias inteiros de trabalho para produzir um único conjunto de materiais, passou a ser concluída em menos de cinco minutos, com maior padronização e praticamente sem intervenção manual.'
@@ -85,7 +97,19 @@ const PROFESSIONAL_PROJECTS = [
       'Experiência do usuário',
       'Resolução de problemas reais'
     ],
-    technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign']
+    technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign'],
+    media: [
+      {
+        type: 'video',
+        src: 'assets/demo-automacao-encartes.mp4',
+        title: 'Demonstração do sistema de automação de encartes',
+        caption: 'Demonstração visual da solução automatizando a criação dos encartes e materiais de campanha.',
+        muted: true,
+        autoplay: true,
+        loop: true,
+        preload: 'auto'
+      }
+    ]
   },
   {
     id: 3,
@@ -93,6 +117,8 @@ const PROFESSIONAL_PROJECTS = [
     eyebrow: 'Projeto profissional · Inteligência de mídia',
     icon: 'radio-tower',
     title: 'Sistema de Inteligência para Abrangência de Rádios',
+    roleSummary: 'Levantamento, modelagem de dados, definição funcional, construção e testes.',
+    resultSummary: 'Cobertura de aproximadamente 58 rádios centralizada para apoiar decisões de mídia.',
     description: [
       'Transformei uma planilha de controle em um sistema web para centralizar, atualizar e analisar informações sobre a cobertura territorial das rádios contratadas pela Farmácias Associadas.',
       'A solução ajuda a identificar municípios alcançados, possíveis sobreposições entre emissoras e oportunidades de otimização. Antes, as contratações podiam ser definidas por município sem uma visão completa da abrangência territorial, inclusive com diferentes rádios cobrindo as mesmas regiões.'
@@ -113,7 +139,14 @@ const PROFESSIONAL_PROJECTS = [
       'Experiência do usuário',
       'Decisões baseadas em dados'
     ],
-    technologies: []
+    technologies: ['Replit', 'Modelagem de dados'],
+    media: [
+      {
+        type: 'protected',
+        title: 'Visualização sob solicitação',
+        caption: 'Os dados de cobertura são corporativos. O fluxo pode ser demonstrado com informações anonimizadas.'
+      }
+    ]
   }
 ];
 
@@ -166,6 +199,8 @@ const CERTIFICATIONS = [
 document.addEventListener('DOMContentLoaded', () => {
   initConfiguration();
   renderProjects();
+  initProjectMediaGalleries();
+  initProjectVideos();
   renderCertifications();
   initTheme();
   initMobileMenu();
@@ -180,6 +215,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCardTilt();
   initHeroCardTilt();
   initSmoothNavLinks();
+  initBackToTop();
   initParticles();
   
   const currentYearEl = document.getElementById('currentYear');
@@ -292,16 +328,60 @@ function renderProjectTags(technologies = []) {
 
 function renderProjectActions(project) {
   const githubLink = project.githubUrl && !project.githubUrl.startsWith('INSERIR_')
-    ? `<a href="${project.githubUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Código-fonte no GitHub"><i data-lucide="github" aria-hidden="true"></i></a>`
+    ? `<a href="${project.githubUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer"><i data-lucide="github" aria-hidden="true"></i><span>Ver código</span></a>`
     : '';
 
   const demoLink = project.demoUrl && !project.demoUrl.startsWith('INSERIR_')
-    ? `<a href="${project.demoUrl}" class="project-action-btn" target="_blank" rel="noopener noreferrer" aria-label="Demonstração online"><i data-lucide="external-link" aria-hidden="true"></i></a>`
+    ? `<a href="${project.demoUrl}" class="project-action-btn project-action-btn--primary" target="_blank" rel="noopener noreferrer"><i data-lucide="external-link" aria-hidden="true"></i><span>Abrir demonstração</span></a>`
     : '';
 
-  return githubLink || demoLink
-    ? `<div class="project-actions">${githubLink}${demoLink}</div>`
+  const actions = `${demoLink}${githubLink}`;
+
+  return `<div class="project-actions">
+    ${actions || '<a href="#contact" class="project-action-btn"><i data-lucide="messages-square" aria-hidden="true"></i><span>Solicitar demonstração</span></a>'}
+  </div>`;
+}
+
+function renderProjectMedia(project) {
+  const mediaItems = Array.isArray(project.media) ? project.media : [];
+  if (!mediaItems.length) return '';
+
+  const items = mediaItems.map((media, mediaIndex) => {
+    const isActive = mediaIndex === 0;
+    let content = '';
+
+    if (media.type === 'image') {
+      content = `<img src="${media.src}" alt="${media.alt || ''}" loading="lazy">`;
+    } else if (media.type === 'video') {
+      content = `<video controls playsinline${media.muted ? ' muted' : ''}${media.autoplay ? ' autoplay' : ''}${media.loop ? ' loop' : ''} preload="${media.preload || 'metadata'}"${media.poster ? ` poster="${media.poster}"` : ''} aria-label="${media.title || `Vídeo do projeto ${project.title}`}">
+        <source src="${media.src}" type="video/mp4">
+        Seu navegador não oferece suporte a vídeo HTML5.
+      </video>`;
+    } else if (media.type === 'embed') {
+      content = `<iframe src="${media.src}" title="${media.title || `Demonstração do projeto ${project.title}`}" loading="lazy" allow="fullscreen" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+    } else {
+      content = `<div class="project-media-protected">
+        <i data-lucide="shield-check" aria-hidden="true"></i>
+        <span>Projeto corporativo</span>
+        <strong>${media.title || 'Visualização protegida'}</strong>
+        <p>${media.caption || 'A demonstração pode ser apresentada com dados anonimizados.'}</p>
+        <a href="#contact">Conversar sobre a solução <i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+      </div>`;
+    }
+
+    return `<figure class="project-media-item${isActive ? ' is-active' : ''}" data-media-index="${mediaIndex}"${isActive ? '' : ' hidden'}>
+      <div class="project-media-viewport">${content}</div>
+      ${media.type !== 'protected' && media.caption ? `<figcaption>${media.caption}</figcaption>` : ''}
+    </figure>`;
+  }).join('');
+
+  const controls = mediaItems.length > 1
+    ? `<div class="project-media-controls" aria-label="Selecionar mídia do projeto">
+        ${mediaItems.map((media, mediaIndex) => `<button type="button" data-media-target="${mediaIndex}" class="${mediaIndex === 0 ? 'is-active' : ''}" aria-label="Mostrar mídia ${mediaIndex + 1}" aria-pressed="${mediaIndex === 0}">${String(mediaIndex + 1).padStart(2, '0')}</button>`).join('')}
+      </div>`
     : '';
+
+  return `<div class="project-media-shell" data-project-media>${items}${controls}</div>`;
 }
 
 function createProfessionalProjectCard(project, index) {
@@ -310,25 +390,14 @@ function createProfessionalProjectCard(project, index) {
   const indicatorId = `professional-project-${project.id}-indicators`;
   const delayClass = index > 0 ? ` reveal-delay-${Math.min(index + 1, 4)}` : '';
   const additionalDescription = project.description.slice(1);
-  const impact = project.impact
+  const result = project.impact
     ? `
-      <div class="project-impact" aria-label="${project.impact.ariaLabel}">
-        <span class="project-impact-label">${project.impact.label}</span>
-        <span class="project-impact-before">${project.impact.before}</span>
-        <span class="project-impact-arrow" aria-hidden="true"><i data-lucide="arrow-down"></i></span>
-        <strong class="project-impact-after">${project.impact.after}</strong>
+      <div class="project-result-strip" aria-label="${project.impact.ariaLabel}">
+        <span>${project.impact.label}</span>
+        <div><s>${project.impact.before}</s><i data-lucide="arrow-right" aria-hidden="true"></i><strong>${project.impact.after}</strong></div>
       </div>
     `
-    : '';
-  const quickFacts = !project.impact
-    ? `
-      <ul class="project-quick-facts" aria-label="Números principais do projeto">
-        ${project.indicators.slice(0, 2).map(indicator => `
-          <li><i data-lucide="circle-check" aria-hidden="true"></i><span>${indicator}</span></li>
-        `).join('')}
-      </ul>
-    `
-    : '';
+    : `<div class="project-result-strip"><span>Resultado</span><strong>${project.resultSummary}</strong></div>`;
 
   article.className = `glass-card project-case project-case--${project.prominence} reveal${delayClass}`;
   article.setAttribute('aria-labelledby', titleId);
@@ -341,15 +410,22 @@ function createProfessionalProjectCard(project, index) {
       ${renderProjectTags(project.technologies)}
     </header>
 
-    <div class="project-case-hero">
+    <div class="project-case-layout${index % 2 ? ' is-reversed' : ''}">
+      <div class="project-case-media">
+        ${renderProjectMedia(project)}
+      </div>
       <div class="project-case-copy">
         <h3 class="project-case-title" id="${titleId}">${project.title}</h3>
         <div class="project-case-description">
           <p>${project.description[0]}</p>
         </div>
-        ${quickFacts}
+        <div class="project-role-summary">
+          <span>Minha participação</span>
+          <p>${project.roleSummary}</p>
+        </div>
+        ${result}
+        ${renderProjectActions(project)}
       </div>
-      ${impact}
     </div>
 
     <details class="project-disclosure">
@@ -396,9 +472,6 @@ function createProfessionalProjectCard(project, index) {
       </div>
     </details>
 
-    <footer class="project-case-footer">
-      ${renderProjectActions(project)}
-    </footer>
   `;
 
   return article;
@@ -438,31 +511,41 @@ function createAcademicProjectCard(project, index) {
 }
 
 function renderCertifications() {
-  const grid = document.getElementById('certificationsGrid');
-  if (!grid) return;
+  const track = document.getElementById('certificationsGrid');
+  if (!track) return;
 
-  grid.innerHTML = '';
+  track.innerHTML = '';
 
-  CERTIFICATIONS.forEach(cert => {
-    const card = document.createElement('div');
-    const delay = (CERTIFICATIONS.indexOf(cert) % 4) + 1;
-    card.className = `glass-card cert-card reveal${delay > 1 ? ' reveal-delay-' + delay : ''}`;
-    card.setAttribute('data-type', cert.type);
-    
-    const iconName = cert.type === 'edu' ? 'award' : 'calendar-days';
-    
-    card.innerHTML = `
-      <div class="cert-icon">
-        <i data-lucide="${iconName}"></i>
-      </div>
-      <div class="cert-info">
-        <h3>${cert.title}</h3>
-        <p>${cert.institution}</p>
-      </div>
-    `;
-    
-    grid.appendChild(card);
-  });
+  const createSequence = (isDuplicate = false) => {
+    const sequence = document.createElement('div');
+    sequence.className = 'certs-sequence';
+
+    if (isDuplicate) sequence.setAttribute('aria-hidden', 'true');
+
+    CERTIFICATIONS.forEach(cert => {
+      const card = document.createElement('article');
+      card.className = 'cert-card';
+      card.setAttribute('data-type', cert.type);
+
+      const iconName = cert.type === 'edu' ? 'award' : 'calendar-days';
+
+      card.innerHTML = `
+        <div class="cert-icon" aria-hidden="true">
+          <i data-lucide="${iconName}"></i>
+        </div>
+        <div class="cert-info">
+          <h3>${cert.title}</h3>
+          <p>${cert.institution}</p>
+        </div>
+      `;
+
+      sequence.appendChild(card);
+    });
+
+    return sequence;
+  };
+
+  track.append(createSequence(), createSequence(true));
 }
 
 function initTheme() {
@@ -604,7 +687,24 @@ function initServicesAccordion() {
 
 function initSkillsFilter() {
   const tabBtns = document.querySelectorAll('.tab-btn');
-  const skillBadges = document.querySelectorAll('.skill-badge');
+  const skillsGrid = document.getElementById('skillsGrid');
+  const originalBadges = Array.from(document.querySelectorAll('.skill-badge'));
+
+  if (!skillsGrid || !originalBadges.length) return;
+
+  for (let copyIndex = 0; copyIndex < 2; copyIndex += 1) {
+    originalBadges.forEach(badge => {
+      const clone = badge.cloneNode(true);
+      clone.classList.add('skill-badge-clone');
+      clone.setAttribute('aria-hidden', 'true');
+      clone.querySelectorAll('a, button, input, select, textarea').forEach(control => {
+        control.setAttribute('tabindex', '-1');
+      });
+      skillsGrid.appendChild(clone);
+    });
+  }
+
+  const skillBadges = skillsGrid.querySelectorAll('.skill-badge');
 
   tabBtns.forEach(btn => {
     btn.setAttribute('role', 'tab');
@@ -1090,4 +1190,78 @@ function initParticles() {
   });
 
   start();
+}
+
+function initProjectMediaGalleries() {
+  document.querySelectorAll('[data-project-media]').forEach(gallery => {
+    const buttons = Array.from(gallery.querySelectorAll('[data-media-target]'));
+    const items = Array.from(gallery.querySelectorAll('[data-media-index]'));
+    if (buttons.length < 2 || items.length < 2) return;
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetIndex = button.getAttribute('data-media-target');
+        buttons.forEach(item => {
+          const selected = item === button;
+          item.classList.toggle('is-active', selected);
+          item.setAttribute('aria-pressed', String(selected));
+        });
+        items.forEach(item => {
+          const selected = item.getAttribute('data-media-index') === targetIndex;
+          item.classList.toggle('is-active', selected);
+          item.hidden = !selected;
+        });
+      });
+    });
+  });
+}
+
+function initProjectVideos() {
+  const videos = Array.from(document.querySelectorAll('.project-media-viewport video'));
+  if (!videos.length) return;
+
+  videos.forEach(video => {
+    if (video.hasAttribute('muted')) {
+      video.muted = true;
+      video.defaultMuted = true;
+    }
+  });
+
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      const video = entry.target;
+      if (entry.isIntersecting) {
+        video.play().catch(() => {});
+      } else {
+        video.pause();
+      }
+    });
+  }, {
+    rootMargin: '200px 0px',
+    threshold: 0.15
+  });
+
+  videos.forEach(video => observer.observe(video));
+}
+
+function initBackToTop() {
+  const button = document.getElementById('backToTopBtn');
+  if (!button) return;
+
+  const updateVisibility = () => {
+    const isVisible = window.scrollY > 500;
+    button.classList.toggle('is-visible', isVisible);
+    button.setAttribute('aria-hidden', String(!isVisible));
+    button.tabIndex = isVisible ? 0 : -1;
+  };
+
+  button.addEventListener('click', () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+  updateVisibility();
 }
