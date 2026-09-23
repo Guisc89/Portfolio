@@ -2847,3 +2847,25 @@ button:focus-visible {
     transform: none !important;
   }
 }
+
+/* ==========================================================================
+   19. PROFESSIONAL PROJECT CARD FOOTER (GitHub & Demo buttons)
+   ========================================================================== */
+.project-case-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.project-case-footer .project-action-btn {
+  width: 2.2rem;
+  height: 2.2rem;
+}
+
+.project-case-footer .project-action-btn i {
+  width: 1rem;
+  height: 1rem;
+}

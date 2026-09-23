@@ -2,33 +2,60 @@
    INTERACTIVE LOGIC AND CONFIGURATION: GUILHERME CARDOSO PORTFOLIO
    ========================================================================== */
 
-/**
- * 1. CENTRAL CONFIGURATION VARIABLES
- * Replace the values below with your personal links and information.
- * All links and buttons on the site will be automatically updated!
- */
 const CONFIG = {
-  // WhatsApp Configuration
-  whatsappNumber: '5551981097705', // Ex: '5551999999999' (Código país + DDD + Número, apenas números)
+  whatsappNumber: '5551981097705',
   whatsappMessage: 'Olá, Guilherme! Vi seu portfólio e gostaria de conversar sobre uma oportunidade na área de tecnologia.',
   
-  // Professional Links
-  linkedinUrl: 'https://www.linkedin.com/in/guilherme-cardoso-02111989', // Ex: 'https://www.linkedin.com/in/guilherme-cardoso-02111989'
-  githubUrl: 'https://github.com/Guisc89',     // Ex: 'https://github.com/Guisc89'
-  githubUsername: 'Guisc89',                  // Reservado para uma futura integração com a API do GitHub
-  githubReposLimit: 6,                        // Reservado para limitar resultados de uma futura integração
-  emailAddress: 'oguicardoso@outlook.com',         // Ex: 'oguicardoso@outlook.com'
+  linkedinUrl: 'https://www.linkedin.com/in/guilherme-cardoso-02111989',
+  githubUrl: 'https://github.com/Guisc89',
+  githubUsername: 'Guisc89',
+  githubReposLimit: 6,
+  emailAddress: 'oguicardoso@outlook.com',
   resumeUrl: 'assets/curriculo-conceito-guilherme-cardoso.pdf',
 };
 
-/**
- * 2. DYNAMIC PROJECTS LISTS
- * Cases profissionais em destaque e projetos de estudo em formato compacto.
- */
 const PROFESSIONAL_PROJECTS = [
   {
     id: 1,
     prominence: 'primary',
+    eyebrow: 'Projeto de portfólio · IA Aplicada',
+    icon: 'compass',
+    title: 'Bússola Capital — Agente de IA para Análise Financeira',
+    description: [
+      'Desenvolvi um agente de inteligência artificial que analisa ações, FIIs e criptomoedas em tempo real e gera relatórios estruturados com pontos fortes, riscos e veredito de investimento.',
+      'O sistema consome dados reais do Yahoo Finance, envia para análise por um LLM (Qwen 3.8 via Groq) com prompt de analista sênior, valida a resposta contra contratos Pydantic para defesa contra alucinações, e apresenta tudo em uma interface web profissional com cache inteligente e tratamento robusto de erros.'
+    ],
+    impact: {
+      label: 'Arquitetura',
+      before: 'DADOS BRUTOS',
+      after: 'RELATÓRIO ESTRUTURADO',
+      ariaLabel: 'Transformação de dados brutos em relatório estruturado de investimento'
+    },
+    indicators: [
+      'Deploy público na Streamlit Community Cloud',
+      'Integração com 2 APIs externas (Yahoo Finance + Groq)',
+      'Defesa contra alucinação de IA via Pydantic',
+      'Cache inteligente para otimizar limites de API',
+      'Interface com UX de produto profissional'
+    ],
+    role: 'Arquiteto e desenvolvedor full-stack: defini a arquitetura em camadas, implementei o agente orquestrador, integrei APIs externas, projetei os prompts de IA, construí a interface web com Streamlit e publiquei na nuvem.',
+    competencies: [
+      'Arquitetura de Software',
+      'Princípios SOLID',
+      'Integração de APIs',
+      'Engenharia de Prompts',
+      'IA Aplicada',
+      'Validação de Dados',
+      'Orientação a Objetos',
+      'Deploy em Nuvem'
+    ],
+    technologies: ['Python', 'Streamlit', 'Groq (LLM)', 'Pydantic', 'yfinance', 'OOP', 'SOLID'],
+    githubUrl: 'https://github.com/Guisc89/agente-financeiro',
+    demoUrl: 'https://agente-financeiro-io.streamlit.app/'
+  },
+  {
+    id: 2,
+    prominence: 'secondary',
     eyebrow: 'Projeto profissional · Automação',
     icon: 'workflow',
     title: 'Sistema de Automação de Encartes e Materiais de Campanha',
@@ -61,7 +88,7 @@ const PROFESSIONAL_PROJECTS = [
     technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign']
   },
   {
-    id: 2,
+    id: 3,
     prominence: 'secondary',
     eyebrow: 'Projeto profissional · Inteligência de mídia',
     icon: 'radio-tower',
@@ -90,45 +117,14 @@ const PROFESSIONAL_PROJECTS = [
   }
 ];
 
-const ACADEMIC_PROJECTS = [
-  {
-    id: 1,
-    title: 'Calculadora Web',
-    description: 'Calculadora funcional desenvolvida com HTML, CSS e JavaScript, aplicando manipulação de DOM, tratamento de eventos, lógica matemática básica e interface responsiva adaptável.',
-    solution: 'Demonstra domínio prático de JavaScript Vanilla, controle de eventos no navegador, estrutura semântica e estilização flexível com CSS Grid e Flexbox.',
-    technologies: ['HTML', 'CSS', 'JavaScript'],
-    githubUrl: 'INSERIR_GITHUB_CALCULADORA',
-    demoUrl: 'INSERIR_DEMO_CALCULADORA'
-  },
-  {
-    id: 2,
-    title: 'Página inspirada na Netflix',
-    description: 'Recriação da tela inicial da Netflix para praticar composição visual e estruturação de interfaces. A página reúne hero, seletor de idioma, formulário de e-mail com validação nativa, seções de benefícios e rodapé.',
-    solution: 'Demonstra organização de layout com Flexbox e CSS Grid, hierarquia visual, uso de imagens e gradientes e adaptação básica da interface para telas menores.',
-    technologies: ['HTML5', 'CSS3', 'Flexbox', 'CSS Grid'],
-    githubUrl: 'https://github.com/Guisc89/Pagina-Netflix',
-    demoUrl: 'https://guisc89.github.io/Pagina-Netflix/'
-  },
-  {
-    id: 3,
-    title: 'Projeto Python — Fundação Bradesco',
-    description: 'Linguagem de Programação Python — Fundação Bradesco.',
-    solution: '',
-    technologies: ['Python'],
-    githubUrl: '',
-    demoUrl: ''
-  }
-];
+// Array vazio — seção de projetos acadêmicos removida
+const ACADEMIC_PROJECTS = [];
 
-/**
- * 3. DYNAMIC CERTIFICATIONS & EVENTS LIST
- * Feel free to add more certifications here as you get them!
- */
 const CERTIFICATIONS = [
   {
     title: 'Análise e Desenvolvimento de Sistemas',
     institution: 'Universidade Estácio de Sá',
-    type: 'edu' // edu or event
+    type: 'edu'
   },
   {
     title: 'Gestão Estratégica em Negociação',
@@ -167,11 +163,7 @@ const CERTIFICATIONS = [
   }
 ];
 
-/* ==========================================================================
-   MAIN CONTROLLER - RUNS ON DOM CONTENT LOADED
-   ========================================================================== */
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize dynamic components
   initConfiguration();
   renderProjects();
   renderCertifications();
@@ -190,18 +182,13 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothNavLinks();
   initParticles();
   
-  // Set current year in footer
   const currentYearEl = document.getElementById('currentYear');
   if (currentYearEl) currentYearEl.textContent = new Date().getFullYear();
 
-  // Initialize Lucide Icons
   ensureLucideIcons();
+});
 
-/**
- * 4. SETUP CONFIGURATION LINKS IN DOM
- */
 function initConfiguration() {
-  // Parse WhatsApp URL
   let whatsappUrl = '#';
   const cleanNumber = String(CONFIG.whatsappNumber || '').replace(/\D/g, '');
   if (cleanNumber.length >= 10 && !CONFIG.whatsappNumber.startsWith('INSERIR_')) {
@@ -209,32 +196,27 @@ function initConfiguration() {
     whatsappUrl = `https://api.whatsapp.com/send?phone=${cleanNumber}&text=${encodedText}`;
   }
 
-  // Parse Social links
   const linkedinUrl = CONFIG.linkedinUrl === 'INSERIR_LINK_LINKEDIN' ? '#' : CONFIG.linkedinUrl;
   const githubUrl = CONFIG.githubUrl === 'INSERIR_LINK_GITHUB' ? '#' : CONFIG.githubUrl;
   const emailUrl = CONFIG.emailAddress === 'INSERIR_EMAIL' ? '#' : `mailto:${CONFIG.emailAddress}`;
   const resumeUrl = CONFIG.resumeUrl === 'INSERIR_LINK_CURRICULO' ? '#' : CONFIG.resumeUrl;
 
-  // Hero section assignments
   setElementLink('heroWhatsappBtn', whatsappUrl);
   setElementLink('heroLinkedinBtn', linkedinUrl);
   setElementLink('heroGithubBtn', githubUrl);
   setElementLink('heroResumeBtn', resumeUrl);
 
-  // Contact section assignments
   setElementLink('contactWhatsappBtn', whatsappUrl);
   setElementLink('contactLinkedinBtn', linkedinUrl);
   setElementLink('contactGithubBtn', githubUrl);
   setElementLink('contactEmailBtn', emailUrl);
   setElementLink('contactResumeBtn', resumeUrl);
 
-  // Email textual text inside the card
   const emailTextEl = document.getElementById('contactEmailTxt');
   if (emailTextEl) {
     emailTextEl.textContent = CONFIG.emailAddress !== 'INSERIR_EMAIL' ? CONFIG.emailAddress : 'seu-email@dominio.com';
   }
 
-  // Handle empty alerts on click
   const socialLinks = [
     { id: 'heroWhatsappBtn', val: CONFIG.whatsappNumber, name: 'WhatsApp' },
     { id: 'contactWhatsappBtn', val: CONFIG.whatsappNumber, name: 'WhatsApp' },
@@ -259,13 +241,9 @@ function initConfiguration() {
     }
   });
   
-  // Re-initialize Lucide Icons to render any new icons
   ensureLucideIcons();
 }
 
-/**
- * Ensure all Lucide icons are rendered properly
- */
 function ensureLucideIcons() {
   if (typeof lucide !== 'undefined' && lucide.createIcons) {
     lucide.createIcons();
@@ -283,9 +261,6 @@ function setElementLink(id, url) {
   }
 }
 
-/**
- * 5. RENDERS DYNAMIC PROJECTS CARDS
- */
 function renderProjects() {
   const professionalGrid = document.getElementById('professionalProjects');
   const academicGrid = document.getElementById('academicProjectsGrid');
@@ -420,6 +395,10 @@ function createProfessionalProjectCard(project, index) {
         </div>
       </div>
     </details>
+
+    <footer class="project-case-footer">
+      ${renderProjectActions(project)}
+    </footer>
   `;
 
   return article;
@@ -458,14 +437,11 @@ function createAcademicProjectCard(project, index) {
   return article;
 }
 
-/**
- * 6. RENDERS DYNAMIC CERTIFICATIONS & EVENTS
- */
 function renderCertifications() {
   const grid = document.getElementById('certificationsGrid');
   if (!grid) return;
 
-  grid.innerHTML = ''; // Clear
+  grid.innerHTML = '';
 
   CERTIFICATIONS.forEach(cert => {
     const card = document.createElement('div');
@@ -473,7 +449,6 @@ function renderCertifications() {
     card.className = `glass-card cert-card reveal${delay > 1 ? ' reveal-delay-' + delay : ''}`;
     card.setAttribute('data-type', cert.type);
     
-    // Choose icon based on type
     const iconName = cert.type === 'edu' ? 'award' : 'calendar-days';
     
     card.innerHTML = `
@@ -490,9 +465,6 @@ function renderCertifications() {
   });
 }
 
-/**
- * 7. DARK/LIGHT THEME TOGGLE WITH LOCALSTORAGE
- */
 function initTheme() {
   const themeToggle = document.getElementById('themeToggle');
   if (!themeToggle) return;
@@ -509,7 +481,6 @@ function initTheme() {
     try {
       localStorage.setItem('theme', theme);
     } catch (error) {
-      // The theme still works even when storage is unavailable.
     }
   };
 
@@ -531,9 +502,6 @@ function initTheme() {
   });
 }
 
-/**
- * 8. MOBILE MENU DRAWER
- */
 function initMobileMenu() {
   const menuToggle = document.getElementById('menuToggle');
   const navMenu = document.getElementById('navMenu');
@@ -585,9 +553,6 @@ function initMobileMenu() {
   });
 }
 
-/**
- * 9. SCROLLSPY (ACTIVE LINK HIGHLIGHTING & STICKY NAV)
- */
 function initScrollspy() {
   const header = document.querySelector('.header');
   const sections = document.querySelectorAll('section[id]');
@@ -622,10 +587,6 @@ function initScrollspy() {
   sections.forEach(section => observer.observe(section));
 }
 
-/**
- * 10. SERVICES ACCORDION
- * Keeps the section compact by showing one detailed area at a time.
- */
 function initServicesAccordion() {
   const serviceItems = Array.from(document.querySelectorAll('.services-section .service-item'));
   if (!serviceItems.length) return;
@@ -641,9 +602,6 @@ function initServicesAccordion() {
   });
 }
 
-/**
- * 11. INTERACTIVE SKILLS FILTER
- */
 function initSkillsFilter() {
   const tabBtns = document.querySelectorAll('.tab-btn');
   const skillBadges = document.querySelectorAll('.skill-badge');
@@ -653,7 +611,6 @@ function initSkillsFilter() {
     btn.setAttribute('aria-selected', String(btn.classList.contains('active')));
 
     btn.addEventListener('click', () => {
-      // Toggle active classes on tabs
       tabBtns.forEach(b => {
         b.classList.remove('active');
         b.setAttribute('aria-selected', 'false');
@@ -663,7 +620,6 @@ function initSkillsFilter() {
 
       const filter = btn.getAttribute('data-tab');
 
-      // Filter badges
       skillBadges.forEach(badge => {
         const category = badge.getAttribute('data-category');
         
@@ -677,10 +633,6 @@ function initSkillsFilter() {
   });
 }
 
-/**
- * 12. EXPERIENCE ACCORDION
- * Keeps the current role open and condenses previous positions.
- */
 function initExperienceAccordion() {
   const cards = Array.from(document.querySelectorAll('.experience-section .job-card'));
 
@@ -745,9 +697,6 @@ function initExperienceAccordion() {
   });
 }
 
-/**
- * 13. TYPEWRITER EFFECT
- */
 function initTypewriter() {
   const el = document.getElementById('typewriter');
   if (!el) return;
@@ -780,10 +729,6 @@ function initTypewriter() {
   type();
 }
 
-/**
- * 14. UNIVERSE PARALLAX BACKGROUND EFFECT
- * Moves glowing orbs and the starfield background in sync with the mouse pointer
- */
 function initUniverseEffect() {
   const glowBg = document.querySelector('.glow-bg');
   const starsBg = document.querySelector('.stars-bg');
@@ -820,10 +765,6 @@ function initUniverseEffect() {
   }, { passive: true });
 }
 
-/**
- * 15. SCROLL REVEAL ANIMATION
- * Uses IntersectionObserver to animate elements into view with staggered delays
- */
 function initScrollReveal() {
   const revealElements = document.querySelectorAll('.reveal');
   if (!revealElements.length) return;
@@ -849,10 +790,6 @@ function initScrollReveal() {
   revealElements.forEach(element => observer.observe(element));
 }
 
-/**
- * 16. COUNTER ANIMATION
- * Animates numbers from 0 to their target when scrolled into view
- */
 function initCounterAnimation() {
   const statNumbers = document.querySelectorAll('.stat-number');
   if (!statNumbers.length) return;
@@ -913,10 +850,6 @@ function initCounterAnimation() {
   statNumbers.forEach(element => observer.observe(element));
 }
 
-/**
- * 17. CARD TILT 3D EFFECT
- * Adds a subtle 3D tilt on mouseover for service/glass cards
- */
 function initCardTilt() {
   const cards = document.querySelectorAll('.project-card.glass-card, .cert-card.glass-card');
   if (!cards.length || !window.matchMedia('(hover: hover)').matches) return;
@@ -940,10 +873,6 @@ function initCardTilt() {
   });
 }
 
-/**
- * 18. HERO PROFESSIONAL CARD TILT
- * Composes a smooth pointer-driven 3D tilt with the card's CSS float animation.
- */
 function initHeroCardTilt() {
   const card = document.querySelector('.hero-visual .tech-card');
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -993,10 +922,6 @@ function initHeroCardTilt() {
   });
 }
 
-/**
- * 19. SMOOTH NAV LINK INTERACTIONS
- * Adds animated underline indicator to nav links on hover
- */
 function initSmoothNavLinks() {
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
@@ -1009,18 +934,12 @@ function initSmoothNavLinks() {
   });
 }
 
-/**
- * 17. INTERACTIVE PARTICLE NETWORK BACKGROUND
- * Canvas-based particles in the brand's orange/purple duo, reacting to the
- * mouse pointer with a gentle repulsion and drawing faint connecting lines.
- * Skips or scales down on small screens and respects reduced-motion preference.
- */
 function initParticles() {
   const canvas = document.getElementById('particlesCanvas');
   if (!canvas) return;
 
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReducedMotion) return; // Respect user preference, keep static background only
+  if (prefersReducedMotion) return;
 
   const ctx = canvas.getContext('2d');
   if (!ctx) return;
@@ -1030,7 +949,6 @@ function initParticles() {
   let particles = [];
   let animationId = null;
 
-  // Colors pulled from the brand palette: orange (primary) + purple (secondary)
   const COLORS = ['245, 59, 0', '139, 92, 246', '255, 255, 255'];
 
   const mouse = { x: null, y: null, radius: 140 };
@@ -1040,7 +958,6 @@ function initParticles() {
   }
 
   function particleCount() {
-    // Density scales with viewport area, capped for performance
     const area = width * height;
     return Math.min(70, Math.max(18, Math.floor(area / 22000)));
   }
@@ -1163,7 +1080,6 @@ function initParticles() {
     resizeTimeout = setTimeout(start, 200);
   });
 
-  // Pause the animation when the tab isn't visible to save battery/CPU
   document.addEventListener('visibilitychange', () => {
     if (document.hidden && animationId) {
       cancelAnimationFrame(animationId);
@@ -1175,5 +1091,3 @@ function initParticles() {
 
   start();
 }
-
-});
