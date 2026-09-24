@@ -560,6 +560,7 @@ function initMobileMenu() {
 
   const setMenuState = (isOpen) => {
     navMenu.classList.toggle('active', isOpen);
+    document.body.classList.toggle('menu-open', isOpen);
     menuToggle.setAttribute('aria-expanded', String(isOpen));
     menuToggle.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -568,6 +569,10 @@ function initMobileMenu() {
     if (icon) {
       icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
       ensureLucideIcons();
+    }
+
+    if (isOpen && window.matchMedia('(max-width: 768px)').matches) {
+      window.requestAnimationFrame(() => navMenu.querySelector('a')?.focus());
     }
   };
 
@@ -589,6 +594,21 @@ function initMobileMenu() {
     if (event.key === 'Escape' && navMenu.classList.contains('active')) {
       setMenuState(false);
       menuToggle.focus();
+      return;
+    }
+
+    if (event.key === 'Tab' && navMenu.classList.contains('active')) {
+      const focusableItems = [menuToggle, ...navMenu.querySelectorAll('a')];
+      const firstItem = focusableItems[0];
+      const lastItem = focusableItems[focusableItems.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstItem) {
+        event.preventDefault();
+        lastItem.focus();
+      } else if (!event.shiftKey && document.activeElement === lastItem) {
+        event.preventDefault();
+        firstItem.focus();
+      }
     }
   });
 
@@ -597,7 +617,7 @@ function initMobileMenu() {
   });
 
   window.addEventListener('resize', () => {
-    if (window.innerWidth > 1120 && navMenu.classList.contains('active')) {
+    if (window.innerWidth > 900 && navMenu.classList.contains('active')) {
       setMenuState(false);
     }
   });
@@ -776,7 +796,8 @@ function initExperienceAccordion() {
 
     details.appendChild(detailsInner);
     card.appendChild(details);
-    setCardState(card, index === 0);
+    const isMobileLayout = window.matchMedia('(max-width: 768px)').matches;
+    setCardState(card, !isMobileLayout && index === 0);
 
     toggle.addEventListener('click', () => {
       const shouldOpen = !card.classList.contains('is-open');
@@ -971,7 +992,30 @@ function initHeroCardTilt() {
   const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (!card || !canHover || prefersReducedMotion) return;
+  if (!card) return;
+
+  const isMobileLayout = window.matchMedia('(max-width: 768px)').matches;
+
+  if (isMobileLayout && !canHover) {
+    card.setAttribute('aria-label', 'Card profissional — toque para alternar entre resumo e foto');
+    card.setAttribute('aria-pressed', 'false');
+
+    const toggleCardFace = () => {
+      const isFlipped = card.classList.toggle('is-flipped');
+      card.setAttribute('aria-pressed', String(isFlipped));
+    };
+
+    card.addEventListener('click', toggleCardFace);
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        toggleCardFace();
+      }
+    });
+    return;
+  }
+
+  if (!canHover || prefersReducedMotion) return;
 
   const tilt = {
     currentX: 0,
