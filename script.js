@@ -1,5 +1,5 @@
 /* ==========================================================================
-   INTERACTIVE LOGIC AND CONFIGURATION: GUILHERME CARDOSO PORTFOLIO
+   LOGICA INTERATIVA E CONFIGURACAO: GUILHERME CARDOSO PORTFOLIO
    ========================================================================== */
 
 const CONFIG = {
@@ -70,16 +70,16 @@ const PROFESSIONAL_PROJECTS = [
     icon: 'workflow',
     title: 'Sistema de Automação de Encartes e Materiais de Campanha',
     roleSummary: 'Diagnóstico, regras de negócio, automação, testes e validação.',
-    resultSummary: 'Produção reduzida de dois dias para menos de cinco minutos.',
+    resultSummary: 'Produção reduzida de 1 semana para menos de 2 dias.',
     description: [
-      'Desenvolvi uma solução que automatiza a criação do preçário e os desdobramentos de campanhas em diferentes formatos, incluindo telas, cards e materiais digitais.',
-      'Uma operação manual e repetitiva, que exigia dois dias inteiros de trabalho para produzir um único conjunto de materiais, passou a ser concluída em menos de cinco minutos, com maior padronização e praticamente sem intervenção manual.'
+      'Utilizando Vibe coding, desenvolvi uma solução que automatiza todo o fluxo de criação de preçários e os desdobramentos do encarte em diferentes formatos, incluindo telas, cards e materiais digitais.',
+      'Uma operação manual e repetitiva, que exigia 1 semana de trabalho para produzir um único conjunto de materiais, passou a ser concluída em menos de 2 dias, com maior padronização e praticamente sem intervenção manual.'
     ],
     impact: {
       label: 'Tempo de produção',
-      before: '2 DIAS',
-      after: 'MENOS DE 5 MINUTOS',
-      ariaLabel: 'Tempo de produção reduzido de dois dias para menos de cinco minutos'
+      before: '1 SEMANA',
+      after: 'MENOS DE 2 DIAS',
+      ariaLabel: 'Tempo de produção reduzido de 1 semana para menos de 2 dias'
     },
     indicators: [
       'Mais de 99% de redução no tempo de execução',
@@ -343,6 +343,20 @@ function renderProjectActions(project) {
   </div>`;
 }
 
+function renderCompactProjectAction(project) {
+  const demoUrl = project.demoUrl && !project.demoUrl.startsWith('INSERIR_') ? project.demoUrl : '';
+  const githubUrl = project.githubUrl && !project.githubUrl.startsWith('INSERIR_') ? project.githubUrl : '';
+  const href = demoUrl || githubUrl || '#contact';
+  const externalAttributes = href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+  return `<div class="project-actions">
+    <a href="${href}" class="project-action-btn project-action-btn--compact"${externalAttributes}>
+      <span>Ver projeto</span>
+      <i data-lucide="arrow-right" aria-hidden="true"></i>
+    </a>
+  </div>`;
+}
+
 function renderProjectMedia(project) {
   const mediaItems = Array.isArray(project.media) ? project.media : [];
   if (!mediaItems.length) return '';
@@ -388,91 +402,43 @@ function renderProjectMedia(project) {
 function createProfessionalProjectCard(project, index) {
   const article = document.createElement('article');
   const titleId = `professional-project-${project.id}-title`;
-  const indicatorId = `professional-project-${project.id}-indicators`;
   const delayClass = index > 0 ? ` reveal-delay-${Math.min(index + 1, 4)}` : '';
-  const additionalDescription = project.description.slice(1);
+  const resultIcon = project.id === 2 ? 'clock-3' : 'chart-no-axes-column-increasing';
   const result = project.impact
     ? `
       <div class="project-result-strip" aria-label="${project.impact.ariaLabel}">
-        <span>${project.impact.label}</span>
-        <div><s>${project.impact.before}</s><i data-lucide="arrow-right" aria-hidden="true"></i><strong>${project.impact.after}</strong></div>
+        <i data-lucide="${resultIcon}" aria-hidden="true"></i>
+        <div>
+          <span>${project.impact.label}</span>
+          <p><s>${project.impact.before}</s><i data-lucide="arrow-right" aria-hidden="true"></i><strong>${project.impact.after}</strong></p>
+        </div>
       </div>
     `
-    : `<div class="project-result-strip"><span>Resultado</span><strong>${project.resultSummary}</strong></div>`;
+    : `<div class="project-result-strip"><i data-lucide="${resultIcon}" aria-hidden="true"></i><div><span>Resultado</span><strong>${project.resultSummary}</strong></div></div>`;
 
   article.className = `glass-card project-case project-case--${project.prominence} reveal${delayClass}`;
   article.setAttribute('aria-labelledby', titleId);
   article.innerHTML = `
-    <header class="project-case-header">
-      <span class="project-case-eyebrow">
-        <i data-lucide="${project.icon}" aria-hidden="true"></i>
-        ${project.eyebrow}
-      </span>
-      ${renderProjectTags(project.technologies)}
-    </header>
-
-    <div class="project-case-layout${index % 2 ? ' is-reversed' : ''}">
-      <div class="project-case-media">
-        ${renderProjectMedia(project)}
-      </div>
-      <div class="project-case-copy">
-        <h3 class="project-case-title" id="${titleId}">${project.title}</h3>
-        <div class="project-case-description">
-          <p>${project.description[0]}</p>
-        </div>
-        <div class="project-role-summary">
-          <span>Minha participação</span>
-          <p>${project.roleSummary}</p>
-        </div>
-        ${result}
-        ${renderProjectActions(project)}
-      </div>
+    <div class="project-case-media">
+      ${renderProjectMedia(project)}
     </div>
 
-    <details class="project-disclosure">
-      <summary class="project-disclosure-toggle">
-        <span class="project-disclosure-label">
-          <i data-lucide="list-plus" aria-hidden="true"></i>
-          <span class="project-disclosure-closed">Ver detalhes do projeto</span>
-          <span class="project-disclosure-open">Ocultar detalhes</span>
+    <div class="project-case-body">
+      <div class="project-case-heading">
+        <span class="project-case-eyebrow">
+          <i data-lucide="${project.icon}" aria-hidden="true"></i>
+          ${project.eyebrow}
         </span>
-        <i class="project-disclosure-chevron" data-lucide="chevron-down" aria-hidden="true"></i>
-      </summary>
-
-      <div class="project-disclosure-content">
-        ${additionalDescription.length ? `
-          <div class="project-detail-description">
-            ${additionalDescription.map(paragraph => `<p>${paragraph}</p>`).join('')}
-          </div>
-        ` : ''}
-
-        <div class="project-results-block" aria-labelledby="${indicatorId}">
-          <h4 class="project-block-title" id="${indicatorId}">Indicadores de impacto</h4>
-          <ul class="project-results-list">
-            ${project.indicators.map(indicator => `
-              <li>
-                <i data-lucide="check-circle-2" aria-hidden="true"></i>
-                <span>${indicator}</span>
-              </li>
-            `).join('')}
-          </ul>
-        </div>
-
-        <div class="project-case-details">
-          <div class="project-detail-block">
-            <h4 class="project-block-title">Minha atuação</h4>
-            <p>${project.role}</p>
-          </div>
-          <div class="project-detail-block">
-            <h4 class="project-block-title">Competências demonstradas</h4>
-            <ul class="project-competencies-list">
-              ${project.competencies.map(competency => `<li>${competency}</li>`).join('')}
-            </ul>
-          </div>
-        </div>
+        <h3 class="project-case-title" id="${titleId}">${project.title}</h3>
+        <p class="project-card-intro">${project.description[0]}</p>
       </div>
-    </details>
 
+      <div class="project-case-summary">
+        ${result}
+        ${project.prominence === 'primary' ? renderProjectTags(project.technologies.slice(0, 3)) : ''}
+        ${renderCompactProjectAction(project)}
+      </div>
+    </div>
   `;
 
   return article;
