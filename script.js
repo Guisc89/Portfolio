@@ -70,16 +70,16 @@ const PROFESSIONAL_PROJECTS = [
     icon: 'workflow',
     title: 'Sistema de Automação de Encartes e Materiais de Campanha',
     roleSummary: 'Diagnóstico, regras de negócio, automação, testes e validação.',
-    resultSummary: 'Produção reduzida de 1 semana para menos de 2 dias.',
+    resultSummary: 'Produção reduzida de 1 semana para 2 dias.',
     description: [
-      'Utilizando Vibe coding, desenvolvi uma solução que automatiza todo o fluxo de criação de preçários e os desdobramentos do encarte em diferentes formatos, incluindo telas, cards e materiais digitais.',
-      'Uma operação manual e repetitiva, que exigia 1 semana de trabalho para produzir um único conjunto de materiais, passou a ser concluída em menos de 2 dias, com maior padronização e praticamente sem intervenção manual.'
+      'Utilizando Desenvolvimento Assistido por IA + Automação, criei uma solução que automatiza todo o fluxo de criação de preçários e os desdobramentos do encarte em diferentes formatos, incluindo telas, cards e preçários.',
+      'Uma operação manual e repetitiva, que exigia 1 semana de trabalho para produzir um único conjunto de materiais, passou a ser concluída em 2 dias, com maior padronização e de forma mais dinâmicapraticamente sem intervenção manual.'
     ],
     impact: {
       label: 'Tempo de produção',
       before: '1 SEMANA',
-      after: 'MENOS DE 2 DIAS',
-      ariaLabel: 'Tempo de produção reduzido de 1 semana para menos de 2 dias'
+      after: 'Para 2 DIAS',
+      ariaLabel: 'Tempo de produção reduzido de 1 semana para 2 dias'
     },
     indicators: [
       'Mais de 99% de redução no tempo de execução',
