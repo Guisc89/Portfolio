@@ -5343,6 +5343,29 @@ button:focus-visible {
   width: 100%;
 }
 
+.project-case .project-actions--compact,
+.project-case--secondary .project-actions--compact {
+  flex-wrap: nowrap;
+}
+
+.project-case .project-actions--compact .project-action-btn--compact,
+.project-case--secondary .project-actions--compact .project-action-btn--compact {
+  width: auto;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.project-case .project-action-btn--github,
+.project-case .project-action-btn--github:hover {
+  border-color: var(--border-color);
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+}
+
+.project-case .project-action-btn--github:hover {
+  border-color: var(--primary);
+}
+
 @media (max-width: 900px) {
   .project-case--primary {
     grid-template-columns: minmax(0, 1.2fr) minmax(270px, 0.8fr);

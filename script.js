@@ -98,6 +98,8 @@ const PROFESSIONAL_PROJECTS = [
       'Resolução de problemas reais'
     ],
     technologies: ['JavaScript', 'ExtendScript', 'Adobe InDesign'],
+    githubUrl: 'https://github.com/Guisc89/Gerador-de-desdobramentos-encarte',
+    demoUrl: 'https://encarte-generator.replit.app/api/login',
     media: [
       {
         type: 'video',
@@ -346,11 +348,17 @@ function renderProjectActions(project) {
 function renderCompactProjectAction(project) {
   const demoUrl = project.demoUrl && !project.demoUrl.startsWith('INSERIR_') ? project.demoUrl : '';
   const githubUrl = project.githubUrl && !project.githubUrl.startsWith('INSERIR_') ? project.githubUrl : '';
-  const href = demoUrl || githubUrl || '#contact';
-  const externalAttributes = href.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+  const projectHref = demoUrl || '#contact';
+  const githubHref = githubUrl || CONFIG.githubUrl;
+  const projectExternalAttributes = projectHref.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
+  const githubExternalAttributes = githubHref.startsWith('http') ? ' target="_blank" rel="noopener noreferrer"' : '';
 
-  return `<div class="project-actions">
-    <a href="${href}" class="project-action-btn project-action-btn--compact"${externalAttributes}>
+  return `<div class="project-actions project-actions--compact">
+    <a href="${githubHref}" class="project-action-btn project-action-btn--compact project-action-btn--github"${githubExternalAttributes}>
+      <i data-lucide="github" aria-hidden="true"></i>
+      <span>Ver no GitHub</span>
+    </a>
+    <a href="${projectHref}" class="project-action-btn project-action-btn--compact"${projectExternalAttributes}>
       <span>Ver projeto</span>
       <i data-lucide="arrow-right" aria-hidden="true"></i>
     </a>
